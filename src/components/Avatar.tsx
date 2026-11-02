@@ -16,6 +16,8 @@ import { avatarCropRadius, botAvatarProfile, clampAvatarFocus, clampAvatarZoom, 
 import { MASCOT_BODIES, botMascotBody } from "../../shared/mascot-bodies";
 import { isHalloweenBody, type BotBodyId } from "../../shared/bot-body";
 import { useHalloweenDressed, wornBody } from "@/lib/halloween-dress";
+import { GrokAvatar } from "./GrokAvatar";
+import { isGrokBody } from "../../shared/grok-bodies";
 import { CarvedAvatar } from "./CarvedAvatar";
 import { steelBodyImage } from "@/lib/steel-body";
 
@@ -140,6 +142,9 @@ export type MausAvatarProps = {
 
 function MausAvatarComponent(props: MausAvatarProps, ref: React.Ref<MausAvatarHandle>) {
   const { bodyId, color, size, state, motion, motionKey, gaze, trackPointer, animated, label } = props;
+  if (isGrokBody(bodyId)) {
+    return <GrokAvatar ref={ref} {...props} bodyId={bodyId} />;
+  }
   if (isHalloweenBody(bodyId)) {
     return (
       <CarvedAvatar

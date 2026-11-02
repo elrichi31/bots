@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
 
+import { BOT_BODY_IDS } from "../shared/bot-body.ts";
+import { GROK_BODY_IDS } from "../shared/grok-bodies.ts";
 import { parseBotProfilePatch } from "./bot-profile.ts";
 
 describe("parseBotProfilePatch (strict — the paired boundary)", () => {
@@ -105,6 +107,12 @@ describe("mascotBody", () => {
     });
   });
 
+  it("accepts every Grok body at both profile boundaries", () => {
+    for (const mascotBody of GROK_BODY_IDS) for (const strict of [true, false]) {
+      expect(parseBotProfilePatch({ mascotBody }, strict)).toEqual({ ok: true, patch: { mascotBody } });
+    }
+  });
+
   it("accepts a Halloween body", () => {
     expect(parseBotProfilePatch({ mascotBody: "pumpkin" } as never, true)).toEqual({
       ok: true,
@@ -116,8 +124,7 @@ describe("mascotBody", () => {
     expect(parseBotProfilePatch({ mascotBody: "hexagram" } as never, true)).toEqual({
       ok: false,
       error:
-        "mascotBody must be cursor, blob, circle, squircle, capsule, drop, shield, hexagon, diamond, star, " +
-        "pumpkin, ghost, witch, bat, cat, skull, monster, mummy, vampire, or spider",
+        `mascotBody must be ${BOT_BODY_IDS.slice(0, -1).join(", ")}, or ${BOT_BODY_IDS.at(-1)}`,
     });
   });
 });

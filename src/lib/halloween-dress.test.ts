@@ -23,6 +23,10 @@ describe("Halloween dress-up", () => {
     expect(wornBody("vampire", "orange", true)).toBe("vampire");
   });
 
+  it("keeps an explicitly chosen Grok body while dressed", () => {
+    expect(wornBody("grok-flower", "orange", true)).toBe("grok-flower");
+  });
+
   it("starts on, and remembers being switched off", () => {
     const store = new Map<string, string>();
     const local = {

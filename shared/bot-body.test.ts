@@ -2,12 +2,13 @@ import { describe, expect, it } from "vitest";
 
 import { BOT_BODY_IDS, COSTUME_FOR_COLOR, botBodyId, botBodySchema, isHalloweenBody } from "./bot-body.ts";
 import { HALLOWEEN_BODY_IDS } from "./halloween-bodies.ts";
+import { GROK_BODY_IDS } from "./grok-bodies.ts";
 import { MASCOT_BODY_IDS } from "./mascot-bodies.ts";
 import { MAUS_COLOR_NAMES } from "./wire.ts";
 
 describe("bot bodies", () => {
-  it("accepts every gradient body and every Halloween body", () => {
-    expect(BOT_BODY_IDS).toEqual([...MASCOT_BODY_IDS, ...HALLOWEEN_BODY_IDS]);
+  it("accepts every gradient, Halloween and Grok body", () => {
+    expect(BOT_BODY_IDS).toEqual([...MASCOT_BODY_IDS, ...HALLOWEEN_BODY_IDS, ...GROK_BODY_IDS]);
     for (const id of BOT_BODY_IDS) expect(botBodySchema.safeParse(id).success).toBe(true);
   });
 

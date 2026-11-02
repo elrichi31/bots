@@ -11,6 +11,7 @@ import {
   type MausState,
 } from "@/lib/mascot";
 import { BOT_AVATAR_CROPS } from "../../shared/bot-avatar";
+import { GROK_BODY_IDS, grokBodyName } from "../../shared/grok-bodies";
 import { MASCOT_BODIES, MASCOT_BODY_IDS } from "../../shared/mascot-bodies";
 import { HALLOWEEN_BODIES, HALLOWEEN_BODY_IDS } from "../../shared/halloween-bodies";
 import type { BotBodyId } from "../../shared/bot-body";
@@ -170,6 +171,9 @@ export function BotProfileAvatarCard({
             <div className="grid grid-cols-5 gap-1.5">
               {MASCOT_BODY_IDS.map((id) => (
                 <BodyButton key={id} id={id} name={MASCOT_BODIES[id].name} bot={bot} busy={busy} onPatch={onPatch} />
+              ))}
+              {GROK_BODY_IDS.map((id) => (
+                <BodyButton key={id} id={id} name={`Grok ${grokBodyName(id)}`} bot={bot} busy={busy} onPatch={onPatch} />
               ))}
             </div>
             <div className="mb-2 mt-4 text-[12px] font-medium uppercase tracking-[0.08em] text-ink-secondary">

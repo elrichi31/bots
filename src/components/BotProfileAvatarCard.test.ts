@@ -3,6 +3,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
 
 import { StoreProvider, type Bot } from "@/state/store";
+import { GROK_BODY_IDS, grokBodyName } from "../../shared/grok-bodies";
 import { MASCOT_BODY_IDS, MASCOT_BODIES } from "../../shared/mascot-bodies";
 import { HALLOWEEN_BODIES, HALLOWEEN_BODY_IDS } from "../../shared/halloween-bodies";
 import { BotProfileAvatarCard } from "./BotProfileAvatarCard";
@@ -46,6 +47,12 @@ describe("BotProfileAvatarCard body picker", () => {
     for (const id of MASCOT_BODY_IDS) {
       expect(markup).toContain(`aria-label="Use the ${MASCOT_BODIES[id].name} body"`);
     }
+  });
+
+  it("offers every Grok body and marks the saved choice selected", () => {
+    const markup = renderCard(makeBot({ mascotBody: "grok-flower" }));
+    for (const id of GROK_BODY_IDS) expect(markup).toContain(`aria-label="Use the Grok ${grokBodyName(id)} body"`);
+    expect(markup).toContain('aria-pressed="true" aria-label="Use the Grok Flower body"');
   });
 
   it("offers the Halloween bodies in their own row", () => {

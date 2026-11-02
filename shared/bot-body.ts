@@ -1,12 +1,13 @@
-/** Every body a bot can wear: the gradient catalog plus the Halloween bodies. */
+/** Every body a bot can wear: the gradient, Halloween and Grok catalogs. */
 
 import { z } from "zod";
 
 import { DEFAULT_MASCOT_BODY, MASCOT_BODY_IDS } from "./mascot-bodies.ts";
 import { HALLOWEEN_BODY_IDS, type HalloweenBodyId } from "./halloween-bodies.ts";
+import { GROK_BODY_IDS } from "./grok-bodies.ts";
 import type { MausColor } from "./wire.ts";
 
-export const BOT_BODY_IDS = [...MASCOT_BODY_IDS, ...HALLOWEEN_BODY_IDS] as const;
+export const BOT_BODY_IDS = [...MASCOT_BODY_IDS, ...HALLOWEEN_BODY_IDS, ...GROK_BODY_IDS] as const;
 
 export type BotBodyId = (typeof BOT_BODY_IDS)[number];
 

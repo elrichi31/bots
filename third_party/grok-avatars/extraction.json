@@ -1,0 +1,541 @@
+{
+  "aplicacion": "/Applications/Grok Bot.app",
+  "version": "0.78.1",
+  "archivos": [
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-arch-face.png",
+      "copia": "PNG originales/bot-arch-face.png",
+      "sha256": "54d07e68d9b1546c02aedc4e1b1b3460fe862be9e13f23c93845c21fa5691fd0"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-arch-face@2x.png",
+      "copia": "PNG originales/bot-arch-face@2x.png",
+      "sha256": "d51fe8e75ca9578d13e1ff6bc7ad73b82ff39c5401d3240239e458ff33a57da5"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-arch.png",
+      "copia": "PNG originales/bot-arch.png",
+      "sha256": "171e77f31e12b4f73ff8095b9c8cfcb069906214d4c67b8089fed73ae85a4031"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-arch@2x.png",
+      "copia": "PNG originales/bot-arch@2x.png",
+      "sha256": "22c07153c8378482d0241a8f78267898f4931a40ca20afeeebbae5effe542b34"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-bean-face.png",
+      "copia": "PNG originales/bot-bean-face.png",
+      "sha256": "f5a5b1136ea2394b041c42228b4867817436e371fafb864258f604a43d51081b"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-bean-face@2x.png",
+      "copia": "PNG originales/bot-bean-face@2x.png",
+      "sha256": "204dcda4d4893603c7a7660e1a04a1c3369b9cf15918f9d6c759ceeb28566ea8"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-bean.png",
+      "copia": "PNG originales/bot-bean.png",
+      "sha256": "0275076b77d5bc25009f29486df01c44846b115c482e2e260fb775ecf46c6862"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-bean@2x.png",
+      "copia": "PNG originales/bot-bean@2x.png",
+      "sha256": "44ce8a1bbe653f19411b657b0e3658c35f485e63d29e2f0c2536ee20df7158e0"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-blob-face.png",
+      "copia": "PNG originales/bot-blob-face.png",
+      "sha256": "a318442c657b1612cfe6a4f919721e4ee29fdc9d088e9381f047682b07e72475"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-blob-face@2x.png",
+      "copia": "PNG originales/bot-blob-face@2x.png",
+      "sha256": "3e66cf4727aff676680c402b3f63f769a0f2bcf3b55ca1d32805550b7883e5e8"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-blob.png",
+      "copia": "PNG originales/bot-blob.png",
+      "sha256": "c295c95bc5c085cdc7209ebea41f2f95d43c4e3f4935660dcb7015cd98e84520"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-blob@2x.png",
+      "copia": "PNG originales/bot-blob@2x.png",
+      "sha256": "6646fbcbc830dd6e4f242f5b3e23f694182e9435f495109e0c1e52bc8561661c"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-capsule-face.png",
+      "copia": "PNG originales/bot-capsule-face.png",
+      "sha256": "3af51adf299fea8bf7b6fca1cdc3152676ae0cbdaab608830a930eb03ebcc81c"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-capsule-face@2x.png",
+      "copia": "PNG originales/bot-capsule-face@2x.png",
+      "sha256": "b687b653267777de4c402d7603ac9dfa3f4eca06f2670bb30096aa5b86f99fd3"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-capsule.png",
+      "copia": "PNG originales/bot-capsule.png",
+      "sha256": "de6a890273fb402924fa885aa868af951c0c1c2f76972a689c111c21d04f61f3"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-capsule@2x.png",
+      "copia": "PNG originales/bot-capsule@2x.png",
+      "sha256": "15caa93ad3716001beb430fcbf19e780901766d11fb0f32cc96a93c46e3e0ddb"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-cloud-face.png",
+      "copia": "PNG originales/bot-cloud-face.png",
+      "sha256": "c893ba82b4e5746f8fed31d0e76bb06014a9ac4f125b96792e9607980a2aef38"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-cloud-face@2x.png",
+      "copia": "PNG originales/bot-cloud-face@2x.png",
+      "sha256": "8187da7dc5a2be00685acb718fb70693e6ee6215351915399efc56893f2f28bb"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-cloud.png",
+      "copia": "PNG originales/bot-cloud.png",
+      "sha256": "d2386ca1971099ac5e79528aaeaf28ed017929e849944023a3b4b0062a3e3932"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-cloud@2x.png",
+      "copia": "PNG originales/bot-cloud@2x.png",
+      "sha256": "770ca3da0a43a30a563e12dc81551f8fba5a56b709f258f04e891a4324b79637"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-clover-face.png",
+      "copia": "PNG originales/bot-clover-face.png",
+      "sha256": "584dbf21e7bc7637ffe784edf6938e57dd0df1e1ad54929d6abc93486a508376"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-clover-face@2x.png",
+      "copia": "PNG originales/bot-clover-face@2x.png",
+      "sha256": "516fd80acba20296b312b6bf7f4f21b5c003d42fc8fcf447480cd777931559e3"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-clover.png",
+      "copia": "PNG originales/bot-clover.png",
+      "sha256": "c7c8081fda88db332fec7871991aed5c9d84171844d3c358d9ff06689617b392"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-clover@2x.png",
+      "copia": "PNG originales/bot-clover@2x.png",
+      "sha256": "c0b3f9f2647f759c53577405484ce035b1f3c9fca31a68b11f99a2ad0760e4a6"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-crystal-face.png",
+      "copia": "PNG originales/bot-crystal-face.png",
+      "sha256": "fea145367bf12abecddbf4f535b183b7a8e8fd4cf50be410d79ab55faed03775"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-crystal-face@2x.png",
+      "copia": "PNG originales/bot-crystal-face@2x.png",
+      "sha256": "43d20057006e5365e5b1abca094d8ec58542e1296b119d52860ecea6209325aa"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-crystal.png",
+      "copia": "PNG originales/bot-crystal.png",
+      "sha256": "b0a850c121f6ad3032c610df3a24cffce354f6302be421b14b349ce6d8b61569"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-crystal@2x.png",
+      "copia": "PNG originales/bot-crystal@2x.png",
+      "sha256": "7a420fae4e75749573b45f60b27925cc08a886d9cd5b643f945c7a49b378c94d"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-cylinder-face.png",
+      "copia": "PNG originales/bot-cylinder-face.png",
+      "sha256": "a47a785fdd511bbfab939e4a91fd9bc9da6a7d6673dca62df10c7712473b1a30"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-cylinder-face@2x.png",
+      "copia": "PNG originales/bot-cylinder-face@2x.png",
+      "sha256": "ed0d1620b0728dc8ef845ad32f6cb933489d60cc5a12356607b7155e352133cf"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-cylinder.png",
+      "copia": "PNG originales/bot-cylinder.png",
+      "sha256": "d0a3d861858bb6f863a827804dfb3698082b22bb7839488e6fc8c2aa333e602e"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-cylinder@2x.png",
+      "copia": "PNG originales/bot-cylinder@2x.png",
+      "sha256": "e0f9f102c886f6ddfb0dfe694bc5c73803b96680bdbc523668c3e077bc278f5d"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-dome-face.png",
+      "copia": "PNG originales/bot-dome-face.png",
+      "sha256": "45ad029a5df72bb9060205ad92906f89158fd1582e59f90c74b2976817f7491d"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-dome-face@2x.png",
+      "copia": "PNG originales/bot-dome-face@2x.png",
+      "sha256": "d82e89f68023f112f5067803cf8bf59044ad0f0287730732e4c00485e211538c"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-dome.png",
+      "copia": "PNG originales/bot-dome.png",
+      "sha256": "edb791b8d0789853ac6302ebc95f9795f6aeac75eb74352a4a873daa41105ba0"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-dome@2x.png",
+      "copia": "PNG originales/bot-dome@2x.png",
+      "sha256": "fb8c47fd7f0ac22b966881a0bf6756d10f9da391dcda39dc0b2fbf933a39f35c"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-egg-face.png",
+      "copia": "PNG originales/bot-egg-face.png",
+      "sha256": "c26135e4dced38f96cf0acb6f0d97972d8a80a66d7aada8af84e355746ef9e7c"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-egg-face@2x.png",
+      "copia": "PNG originales/bot-egg-face@2x.png",
+      "sha256": "31068629f266eb49b5d465f3d27b804efe598cd1145db8ff0f26ed4ba0eb75ad"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-egg.png",
+      "copia": "PNG originales/bot-egg.png",
+      "sha256": "ee6141de743d262ef62ace11914068d45c5562aa8aa60401a7abe5b950e09155"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-egg@2x.png",
+      "copia": "PNG originales/bot-egg@2x.png",
+      "sha256": "79eea8ad895b55ec36cd4804ee815773ac1c2ad97a28417a9578902bb048beed"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-flower-face.png",
+      "copia": "PNG originales/bot-flower-face.png",
+      "sha256": "b70820c1444d93cf0573cf84108f0bc74f628b0242b8e1eb14c688d4b2e8d15d"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-flower-face@2x.png",
+      "copia": "PNG originales/bot-flower-face@2x.png",
+      "sha256": "8d969212bbd3be7ec80ca9df88ee2e396d226337cfb018b05e54687e8f59dcde"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-flower.png",
+      "copia": "PNG originales/bot-flower.png",
+      "sha256": "2af91ea816eacd6ace5d8b8e751ac70208b3a43ae5667b215425a017520f96e5"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-flower@2x.png",
+      "copia": "PNG originales/bot-flower@2x.png",
+      "sha256": "13109b1a6dbd6018a7f5d426f2809b8b45b5ae127c9215f64b76e7dbb2a34158"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-gem-face.png",
+      "copia": "PNG originales/bot-gem-face.png",
+      "sha256": "d690116cb8d64e1ac0ffa488f43f1ec36695f4d8f1419050e00f9e54647b70c6"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-gem-face@2x.png",
+      "copia": "PNG originales/bot-gem-face@2x.png",
+      "sha256": "5c61f87a24d2fc606e1af37b78e2873d06db5cca8c870318baa9fb3346086848"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-gem.png",
+      "copia": "PNG originales/bot-gem.png",
+      "sha256": "a310577c446b638f22535fe00830a9f10b8ee2c8be06075b38232093dbcbf7d9"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-gem@2x.png",
+      "copia": "PNG originales/bot-gem@2x.png",
+      "sha256": "4e7f61597a3ee54e6f4bcce71cab43ca6fdbd0403b1197438a454434fa455453"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-heart-face.png",
+      "copia": "PNG originales/bot-heart-face.png",
+      "sha256": "fa8022844c118ee74ea6e2e3076d21191cb98408553e3308b3f790f212b7b155"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-heart-face@2x.png",
+      "copia": "PNG originales/bot-heart-face@2x.png",
+      "sha256": "6085e27092118f761b2cb314df6c5c8a93d152be3906b4f98f558d5feaad51ac"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-heart.png",
+      "copia": "PNG originales/bot-heart.png",
+      "sha256": "8423dbaa895f39b36a4711ce848c90c22e21ae9cab5a503b207e57d7d524c902"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-heart@2x.png",
+      "copia": "PNG originales/bot-heart@2x.png",
+      "sha256": "57dc383a1e9a8257db4c9b2a9fe020577053c997d938790ac222c8c164f505c6"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-hex-face.png",
+      "copia": "PNG originales/bot-hex-face.png",
+      "sha256": "33fd30ffd0cad2596c541edcddb12a4aa794e72bbcdcccc819cd183e50bbe0b4"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-hex-face@2x.png",
+      "copia": "PNG originales/bot-hex-face@2x.png",
+      "sha256": "f3e327bb5004c44f957b850dfd5934bde700c9037563ca620f9b45e131b7f033"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-hex.png",
+      "copia": "PNG originales/bot-hex.png",
+      "sha256": "2f9592a8565d2691d07ca8e924fbc5f3529fdd429d20ac4a517fd19e44cba38b"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-hex@2x.png",
+      "copia": "PNG originales/bot-hex@2x.png",
+      "sha256": "d84796a89eac29c0fb7c1e9f1ee139a7ff97a259b5f0ae84f2a8433e56278fcc"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-house-face.png",
+      "copia": "PNG originales/bot-house-face.png",
+      "sha256": "8b018df7bd4f33d20b74abe7b48ca33da01522c9b1090b82393f369735492b9c"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-house-face@2x.png",
+      "copia": "PNG originales/bot-house-face@2x.png",
+      "sha256": "ed0fe991f842bc09afca1e540e39d1edba45215bbda37bd340da924c5aa9306e"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-house.png",
+      "copia": "PNG originales/bot-house.png",
+      "sha256": "a5503fb62b981f17692a9877f471d25557da381699ce8048bdbef461dd943386"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-house@2x.png",
+      "copia": "PNG originales/bot-house@2x.png",
+      "sha256": "417977c1d69d1f942c241338008edc58200c9de29c4bb50bf82f6713c39ba731"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-leaf-face.png",
+      "copia": "PNG originales/bot-leaf-face.png",
+      "sha256": "cb669804e63956777275dd6b89d9737317dd4c65f09eb2e0d3b1471689c272e1"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-leaf-face@2x.png",
+      "copia": "PNG originales/bot-leaf-face@2x.png",
+      "sha256": "90614a28c25d0caff7dda39f965555b64ca52f9935066c9b2947660e590dd832"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-leaf.png",
+      "copia": "PNG originales/bot-leaf.png",
+      "sha256": "4c788dbffb26561af6f22f599981886eef9bf464a22fe6c4ca7302d38f0ab2c2"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-leaf@2x.png",
+      "copia": "PNG originales/bot-leaf@2x.png",
+      "sha256": "faa6c4d9f24d9521e160be38d908df05aac30beb5093842eef67ba91ecd16768"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-pebble-face.png",
+      "copia": "PNG originales/bot-pebble-face.png",
+      "sha256": "965a8314910913fbedea88c7b34172d23fb006b5dcd5c6ac0441b05bc4f94c35"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-pebble-face@2x.png",
+      "copia": "PNG originales/bot-pebble-face@2x.png",
+      "sha256": "9c6acf134cd447b8349979feca7b3d53587418ce4f3bb6488e1dceaf9557d99e"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-pebble.png",
+      "copia": "PNG originales/bot-pebble.png",
+      "sha256": "a7c043ed9ba4e2a94ce03cedd25462bd3d3ce782d0909180fdabe92b20e1d0e0"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-pebble@2x.png",
+      "copia": "PNG originales/bot-pebble@2x.png",
+      "sha256": "b5a65445d57545e55f15462fced41392f79a2b3e59d2dfbd55c12eb62b1b82a7"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-pumpkin-face.png",
+      "copia": "PNG originales/bot-pumpkin-face.png",
+      "sha256": "6769aa97c42ef82a42c9834d2ad8777f634048d8b5499ba9aeed692a7d9e3c26"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-pumpkin-face@2x.png",
+      "copia": "PNG originales/bot-pumpkin-face@2x.png",
+      "sha256": "43a394f0f20642e8a0f4232e26322b48022918ebc8e78a45eb1e56363b580a43"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-pumpkin.png",
+      "copia": "PNG originales/bot-pumpkin.png",
+      "sha256": "f6ee6800b6bf45a3d7e5fccb9c3a8f3daaec88d20f0d8d5d0e65f0326955c62b"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-pumpkin@2x.png",
+      "copia": "PNG originales/bot-pumpkin@2x.png",
+      "sha256": "b1cb85de68088eac7a236400c9afc5789e8d89f690a820eeb1ee8d0a5daaf4f4"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-shield-face.png",
+      "copia": "PNG originales/bot-shield-face.png",
+      "sha256": "2580f335a9e7b319b4b32db2b2a548274bfc37ce5c382c46cc61b08df35e3ab3"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-shield-face@2x.png",
+      "copia": "PNG originales/bot-shield-face@2x.png",
+      "sha256": "bcb733b3e071dd25290071a81dd078da23629c57e7b07c7888e6334fa1672bc0"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-shield.png",
+      "copia": "PNG originales/bot-shield.png",
+      "sha256": "339da134ed7025e036ad8e21ddb86081591047aa1154898de2ddc0c0702d2477"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-shield@2x.png",
+      "copia": "PNG originales/bot-shield@2x.png",
+      "sha256": "263661cd50e5eac8c4cda34d32c3d2076014501f530fe52dc0a1c2e1bba6f8dc"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-sparkle-face.png",
+      "copia": "PNG originales/bot-sparkle-face.png",
+      "sha256": "73cf14d80e585693a9d88cdbb4bf8330a6c2557f271439bb8dfbb8c80211b5e8"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-sparkle-face@2x.png",
+      "copia": "PNG originales/bot-sparkle-face@2x.png",
+      "sha256": "2113a82709c71855b8a72d8876b0c8a72ef0ab4bc3bbf6a171bc22d7a5c07bb7"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-sparkle.png",
+      "copia": "PNG originales/bot-sparkle.png",
+      "sha256": "b54b09785efb7aec66d113664bfdede46b92f0c72c22f51bee278b3cff7bc3f3"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-sparkle@2x.png",
+      "copia": "PNG originales/bot-sparkle@2x.png",
+      "sha256": "094b08266973f5f77da073056444df51de6238805baf682c5a2a4837714688a4"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-square-face.png",
+      "copia": "PNG originales/bot-square-face.png",
+      "sha256": "e98cb5c6241d7857271e7bb35748dca540b075bfc4c65b45e4964ee6fa4abdca"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-square-face@2x.png",
+      "copia": "PNG originales/bot-square-face@2x.png",
+      "sha256": "bc980e3ec99cfb23c90b7275af328857da55a7d2d9cadea02cf05c09d5084cd2"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-square.png",
+      "copia": "PNG originales/bot-square.png",
+      "sha256": "794c07338d5582df410531f0d8b5bdd59e2e672b6cd1aac30a8319c620cbf23c"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-square@2x.png",
+      "copia": "PNG originales/bot-square@2x.png",
+      "sha256": "cb13d6cd2a373d1d537efd35513170329ac371651627093be77d1d197fab1b4e"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-squircle-face.png",
+      "copia": "PNG originales/bot-squircle-face.png",
+      "sha256": "415cc7976a994816ead9666ccf71954cb54e2cd4224af6096496d003a77b3742"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-squircle-face@2x.png",
+      "copia": "PNG originales/bot-squircle-face@2x.png",
+      "sha256": "39d52ff078dbc8b4461783b92a3a72c38bc13029424c97bca5928f6525743bb9"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-squircle.png",
+      "copia": "PNG originales/bot-squircle.png",
+      "sha256": "a7ded2038059448ec6ed1702474e6d4c4218b86cfdab5d7ba4293ece91feab85"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-squircle@2x.png",
+      "copia": "PNG originales/bot-squircle@2x.png",
+      "sha256": "d9c223d29a93087675d0e274faf196b8d3bc3f0c932bcb5d6c091f41ea9955d7"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-star-face.png",
+      "copia": "PNG originales/bot-star-face.png",
+      "sha256": "1b72ce6f31d0dbd1018386effb96bc8b9ba2ea33f63d492d2edb9f5ba04157df"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-star-face@2x.png",
+      "copia": "PNG originales/bot-star-face@2x.png",
+      "sha256": "0008213f4ddd48145835d65481de634778c8b78b7c64ca47bcc91585bffea4d9"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-star.png",
+      "copia": "PNG originales/bot-star.png",
+      "sha256": "8371d16c5b7d95823fea9bf3fa2d93d7b4779be4db5a128899850e262feae9a3"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-star@2x.png",
+      "copia": "PNG originales/bot-star@2x.png",
+      "sha256": "5e480231d456895a569e94964567505a1dcc45265c3bdf89eaef78e71a40184d"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-tablet-face.png",
+      "copia": "PNG originales/bot-tablet-face.png",
+      "sha256": "5ee51a24a3d3ea75a7e5c7f457bb01eea4a5e0c2ec5810c32d45be6a0fc487b2"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-tablet-face@2x.png",
+      "copia": "PNG originales/bot-tablet-face@2x.png",
+      "sha256": "6ad16806f445b21a2c66919b17c010742160cf2e306c607409a691c5ca5476b1"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-tablet.png",
+      "copia": "PNG originales/bot-tablet.png",
+      "sha256": "4b172ba698cdeb59702a21735c5a90ad175ed4037c80b46c73e496c223f9eff5"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-tablet@2x.png",
+      "copia": "PNG originales/bot-tablet@2x.png",
+      "sha256": "45368d824b83053285f13459cc7c47f90c1df0ed7b24046682f1b9f7233c284e"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-teardrop-face.png",
+      "copia": "PNG originales/bot-teardrop-face.png",
+      "sha256": "b66d0eb4fa9c235c38fa5bad51d31b08cd5176d0f4eec56a544342b45fcd8e54"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-teardrop-face@2x.png",
+      "copia": "PNG originales/bot-teardrop-face@2x.png",
+      "sha256": "c2fe40ac495e02ebab44487c1ccb536420953ae5d74644e924cd16742ac6c32f"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-teardrop.png",
+      "copia": "PNG originales/bot-teardrop.png",
+      "sha256": "776bb05050f9671641e07156f6c7efbc3373243bb53ad51433bf099ead02d93e"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-teardrop@2x.png",
+      "copia": "PNG originales/bot-teardrop@2x.png",
+      "sha256": "8cfa402eee2053cf3016f95d677b866b2c308ed897896092035941f13db17026"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-wedge-face.png",
+      "copia": "PNG originales/bot-wedge-face.png",
+      "sha256": "09e13edff77bbb776347444a771e394c2e62984c3c8a82c1ccbf4f381fccac15"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-wedge-face@2x.png",
+      "copia": "PNG originales/bot-wedge-face@2x.png",
+      "sha256": "9344a5fb27d827c8f774c62e73471bdbe2e84088ff6c764f8237c16df5316cba"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-wedge.png",
+      "copia": "PNG originales/bot-wedge.png",
+      "sha256": "10b9345d2c4345385ef79cdcef646e3ab87e828abd4e0508de1646f1fc2fd684"
+    },
+    {
+      "original": "/dist/electron-main/menubar-tray/assets/bot-wedge@2x.png",
+      "copia": "PNG originales/bot-wedge@2x.png",
+      "sha256": "8499cefc716c5bc907437dbc37350560c8a30ada1c1abf03ac189e1e3d2048f2"
+    },
+    {
+      "original": "/dist/renderer/assets/index.eager-common-DbK3Oi_r.js",
+      "copia": "Codigo original/index.eager-common-DbK3Oi_r.js",
+      "sha256": "fc17d4622e059ba7de70cc54d18c7fdc64a09b8d823c1904482181f21968e933"
+    },
+    {
+      "original": "/dist/renderer/assets/chunk-rolldown-runtime-BCiCTKAo.js",
+      "copia": "Codigo original/chunk-rolldown-runtime-BCiCTKAo.js",
+      "sha256": "f85e715d54a11fa37b7774ad77b536896ed01bfdfc98f485b678c81859fc8e2e"
+    },
+    {
+      "original": "/dist/renderer/assets/chunk-agent-avatar-editor-Ccc7zqOX.js",
+      "copia": "Codigo original/chunk-agent-avatar-editor-Ccc7zqOX.js",
+      "sha256": "5bc638839675bd92ee901282add0967f45b3f84ed4d1be517677af3d83bf753b"
+    }
+  ]
+}
