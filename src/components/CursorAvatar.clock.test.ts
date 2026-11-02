@@ -108,6 +108,32 @@ describe("CursorAvatar on the shared clock", () => {
     expect(mascotClock().pending()).toBe(0);
   });
 
+  it("gives each state its own eyes", () => {
+    const eyeTransform = () => host.querySelector("g[clip-path] path")!.getAttribute("transform");
+    const looks = (["idle", "happy", "surprised", "sleeping", "working"] as const).map((state) => {
+      render([{ state, animated: false, size: 64 }]);
+      run(100);
+      return eyeTransform();
+    });
+    expect(new Set(looks).size).toBe(looks.length);
+  });
+
+  it("blinks a working bot sooner and more often than an idle one", () => {
+    vi.spyOn(Math, "random").mockReturnValue(0.999);
+    render([{ state: "working", size: 64 }, { state: "idle", size: 64 }]);
+    const eyeHeights = () =>
+      [...host.querySelectorAll("svg")].map((svg) => Number(/scale\([\d.]+ ([\d.]+)\)/.exec(svg.querySelector("g[clip-path] path")!.getAttribute("transform")!)![1]));
+    run(100);
+    const open = eyeHeights();
+    const lowest = [Infinity, Infinity];
+    for (let elapsed = 0; elapsed < 3000; elapsed += 16) {
+      run(16);
+      eyeHeights().forEach((height, index) => { lowest[index] = Math.min(lowest[index], height); });
+    }
+    expect(lowest[0]).toBeLessThan(open[0] * 0.5);
+    expect(lowest[1]).toBeGreaterThan(open[1] * 0.9);
+  });
+
   it("lets a small idle mascot settle to no frames between blinks, and wakes it for a blink", () => {
     vi.spyOn(Math, "random").mockReturnValue(0.999);
     const ref = createRef<MausAvatarHandle>();

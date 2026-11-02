@@ -60,14 +60,46 @@ function mix(hex: string, toward: string, t: number): string {
 
 const FLAT_EYES = "#ffffff";
 const CALM_EXPRESSION = POOLS.idle[0];
-const FACE_TURN = 18;
-const FACE_SHIFT = -0.3;
-const FACE_LIFT = -0.35;
-const FLAT_EYE_SCALE = 0.9;
-const FLAT_EYE_ASPECT = 2.2;
-const FLAT_EYE_TILT = -26;
-const FLAT_FACE_SCALE = 1.6;
+const FACE_LIFT = -0.2;
+const FLAT_EYE_SCALE = 1.4;
+const FLAT_EYE_ASPECT = 1.45;
+const FLAT_EYE_TILT = -8;
+const FLAT_FACE_SCALE = 1.25;
 const FLAT_BLINK: BlinkRhythm = { everyMs: [1900, 4600], durationMs: 180, doubleChance: 0.18, doubleGapMs: 240 };
+const BUSY_BLINK: BlinkRhythm = { everyMs: [900, 2200], durationMs: 200, doubleChance: 0.35, doubleGapMs: 260 };
+
+interface FlatFace {
+  open?: number;
+  size?: number;
+  tilt?: number;
+  look?: [number, number];
+  busy?: boolean;
+}
+
+const FLAT_FACES: Partial<Record<MausState, FlatFace>> = {
+  sleeping: { open: 0.12, look: [0, 0.3] },
+  waking: { open: 1.2, size: 1.05 },
+  listening: { look: [0.25, 0] },
+  thinking: { open: 0.8, look: [-0.35, -0.45], busy: true },
+  searching: { look: [0.45, 0], busy: true },
+  working: { open: 0.75, look: [0, 0.3], busy: true },
+  excited: { open: 1.15, size: 1.05, busy: true },
+  surprised: { open: 1.3, size: 1.1 },
+  suspicious: { open: 0.4, tilt: 4, look: [0.3, 0] },
+  angry: { open: 0.55, tilt: 16 },
+  drowsy: { open: 0.3, look: [0, 0.25] },
+  happy: { open: 0.5, tilt: -6 },
+  curious: { open: 1.1, tilt: -10, look: [0.35, -0.3] },
+  confused: { open: 0.9, tilt: 12, look: [-0.25, -0.2] },
+  bored: { open: 0.5, look: [0.3, 0.3] },
+  proud: { open: 0.55, look: [0, -0.4] },
+  shy: { open: 0.85, size: 0.85, look: [-0.4, 0.35] },
+  sad: { open: 0.8, size: 0.9, tilt: 10, look: [0, 0.45] },
+  laughing: { open: 0.3, tilt: -6, busy: true },
+  scared: { open: 1.2, size: 0.8, busy: true },
+  playful: { open: 0.7, tilt: -12, look: [0.3, -0.2], busy: true },
+  celebrate: { open: 0.5, tilt: -6, busy: true },
+};
 
 const gradientFor = (color: MausColor): [string, string, string] => {
   if (color === "chrome") return CHROME_GRADIENT;
@@ -176,6 +208,17 @@ function GradientAvatarComponent(
     return () => clearTimeout(timer);
   }, [motion, motionKey, animated]);
 
+  const faceState = motionState ?? state;
+  const face = FLAT_FACES[faceState] ?? {};
+  const firstFace = useRef(true);
+  useEffect(() => {
+    if (firstFace.current) {
+      firstFace.current = false;
+      return;
+    }
+    if (animated) inner.current?.blink();
+  }, [faceState, animated]);
+
   const [pointer, setPointer] = useState({ x: 0, y: 0 });
   const range = forward ? POINTER_GAZE.forward : POINTER_GAZE.authored;
   const onPointerMove = (event: ReactPointerEvent<HTMLSpanElement>) => {
@@ -196,7 +239,7 @@ function GradientAvatarComponent(
     >
       <CursorAvatar
         ref={inner}
-        state={motionState ?? state}
+        state={faceState}
         expression={expression ?? CALM_EXPRESSION}
         size={size}
         silhouette={silhouette}
@@ -205,13 +248,13 @@ function GradientAvatarComponent(
         eyeColor={faceInk ?? (chrome ? CHROME_EYES : FLAT_EYES)}
         title={label ?? null}
         lookAround={lookAround ?? (forward ? 0 : 1)}
-        gaze={{ x: (gaze?.x ?? FACE_SHIFT) + pointer.x, y: (gaze?.y ?? FACE_LIFT) + pointer.y }}
-        turn={turn ?? FACE_TURN}
+        gaze={{ x: (gaze?.x ?? face.look?.[0] ?? 0) + pointer.x, y: (gaze?.y ?? FACE_LIFT + (face.look?.[1] ?? 0)) + pointer.y }}
+        turn={turn ?? 0}
         spring={spring}
-        eyeScale={eyeScale ?? FLAT_EYE_SCALE}
-        eyeAspect={FLAT_EYE_ASPECT}
-        eyeTilt={FLAT_EYE_TILT}
-        blinkRhythm={FLAT_BLINK}
+        eyeScale={(eyeScale ?? FLAT_EYE_SCALE) * (face.size ?? 1)}
+        eyeAspect={FLAT_EYE_ASPECT * (face.open ?? 1)}
+        eyeTilt={FLAT_EYE_TILT + (face.tilt ?? 0)}
+        blinkRhythm={face.busy ? BUSY_BLINK : FLAT_BLINK}
         faceScale={FLAT_FACE_SCALE}
         showMouth={showMouth ?? false}
         effects={false}
