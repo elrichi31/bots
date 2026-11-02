@@ -10,7 +10,7 @@ import {
 } from "react";
 import { cn } from "@/lib/cn";
 import { CHROME_EYES, CHROME_GRADIENT, MAUS_COLORS, type MausColor, type MausMotion, type MausState } from "@/lib/mascot";
-import { CursorAvatar, POOLS, type CursorAvatarHandle } from "./CursorAvatar";
+import { CursorAvatar, POOLS, type BlinkRhythm, type CursorAvatarHandle } from "./CursorAvatar";
 import { avatarCropRadius, botAvatarProfile, clampAvatarFocus, clampAvatarZoom, mascotFaceInk, type BotAvatarCrop, type MascotFaceColor } from "../../shared/bot-avatar";
 import { MASCOT_BODIES, botMascotBody } from "../../shared/mascot-bodies";
 import { isHalloweenBody, type BotBodyId } from "../../shared/bot-body";
@@ -58,13 +58,16 @@ function mix(hex: string, toward: string, t: number): string {
     .join("")}`;
 }
 
-const FLAT_EYES = "#18181b";
+const FLAT_EYES = "#ffffff";
 const CALM_EXPRESSION = POOLS.idle[0];
 const FACE_TURN = 18;
+const FACE_SHIFT = -0.3;
 const FACE_LIFT = -0.35;
-const FLAT_EYE_SCALE = 1.15;
-const FLAT_EYE_ASPECT = 1.2;
+const FLAT_EYE_SCALE = 0.9;
+const FLAT_EYE_ASPECT = 2.2;
+const FLAT_EYE_TILT = -26;
 const FLAT_FACE_SCALE = 1.6;
+const FLAT_BLINK: BlinkRhythm = { everyMs: [1900, 4600], durationMs: 180, doubleChance: 0.18, doubleGapMs: 240 };
 
 const gradientFor = (color: MausColor): [string, string, string] => {
   if (color === "chrome") return CHROME_GRADIENT;
@@ -202,11 +205,13 @@ function GradientAvatarComponent(
         eyeColor={faceInk ?? (chrome ? CHROME_EYES : FLAT_EYES)}
         title={label ?? null}
         lookAround={lookAround ?? (forward ? 0 : 1)}
-        gaze={{ x: (gaze?.x ?? 0) + pointer.x, y: (gaze?.y ?? FACE_LIFT) + pointer.y }}
+        gaze={{ x: (gaze?.x ?? FACE_SHIFT) + pointer.x, y: (gaze?.y ?? FACE_LIFT) + pointer.y }}
         turn={turn ?? FACE_TURN}
         spring={spring}
         eyeScale={eyeScale ?? FLAT_EYE_SCALE}
         eyeAspect={FLAT_EYE_ASPECT}
+        eyeTilt={FLAT_EYE_TILT}
+        blinkRhythm={FLAT_BLINK}
         faceScale={FLAT_FACE_SCALE}
         showMouth={showMouth ?? false}
         effects={false}

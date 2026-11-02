@@ -678,6 +678,8 @@ const EXPR_CADENCE = {
   ]
 } satisfies Record<CursorState, [number, number]>
 
+const DEFAULT_BLINK_MS = 320
+
 const BLINK = {
   sleeping: null,
   waking: null,
@@ -894,6 +896,7 @@ export interface CursorAvatarProps {
   spring?: number
   eyeScale?: number
   eyeAspect?: number
+  eyeTilt?: number
   faceScale?: number
   showMouth?: boolean
   mouthStroke?: number
@@ -901,6 +904,7 @@ export interface CursorAvatarProps {
   effects?: boolean
   glyphs?: boolean
   autoBlink?: boolean
+  blinkRhythm?: BlinkRhythm
   autoExpression?: boolean
   paused?: boolean
   silhouette?: CursorSilhouette
@@ -910,6 +914,13 @@ export interface CursorAvatarProps {
   title?: string | null
   className?: string
   style?: React.CSSProperties
+}
+
+export interface BlinkRhythm {
+  everyMs: [number, number]
+  durationMs: number
+  doubleChance: number
+  doubleGapMs: number
 }
 
 export interface CursorAvatarHandle {
@@ -931,6 +942,7 @@ export const CursorAvatar = React.forwardRef<CursorAvatarHandle, CursorAvatarPro
       spring = 7,
       eyeScale = 1,
       eyeAspect = 1,
+      eyeTilt = 0,
       faceScale = 1,
       showMouth = true,
       mouthStroke = MOUTH_STROKE,
@@ -938,6 +950,7 @@ export const CursorAvatar = React.forwardRef<CursorAvatarHandle, CursorAvatarPro
       effects = true,
       glyphs = true,
       autoBlink = true,
+      blinkRhythm,
       autoExpression = true,
       paused = false,
       silhouette = DEFAULT_SILHOUETTE,
@@ -974,6 +987,7 @@ export const CursorAvatar = React.forwardRef<CursorAvatarHandle, CursorAvatarPro
       spring,
       eyeScale,
       eyeAspect,
+      eyeTilt,
       paused,
       reduced,
       lookAround,
@@ -996,6 +1010,7 @@ export const CursorAvatar = React.forwardRef<CursorAvatarHandle, CursorAvatarPro
       velocity: 0,
       travel: 0,
       blinkStart: noTimestamp(),
+      blinkDuration: DEFAULT_BLINK_MS,
       spinStart: noTimestamp(),
       spinDuration: 900,
       last: 0,
@@ -1033,6 +1048,7 @@ export const CursorAvatar = React.forwardRef<CursorAvatarHandle, CursorAvatarPro
       () => ({
         blink: () => {
           if (engine.current.props.reduced) return
+          engine.current.blinkDuration = DEFAULT_BLINK_MS
           engine.current.blinkStart = performance.now()
           wake()
         },
@@ -1072,24 +1088,31 @@ export const CursorAvatar = React.forwardRef<CursorAvatarHandle, CursorAvatarPro
     }, [state, autoExpression, expression, paused, reduced])
 
     useEffect(() => {
-      const cadence = BLINK[state]
-      if (!autoBlink || !cadence || paused || reduced) return
+      const stateCadence = BLINK[state]
+      if (!autoBlink || !stateCadence || paused || reduced) return
+      const cadence = blinkRhythm?.everyMs ?? stateCadence
+      const durationMs = blinkRhythm?.durationMs ?? DEFAULT_BLINK_MS
       let timer: ReturnType<typeof setTimeout>
-      const tick = () => {
-        timer = setTimeout(() => {
-          engine.current.blinkStart = performance.now()
-          wake()
-          tick()
-        }, cadence[0] + Math.random() * (cadence[1] - cadence[0]))
+      const blinkNow = () => {
+        engine.current.blinkDuration = durationMs
+        engine.current.blinkStart = performance.now()
+        wake()
       }
-      tick()
+      const tick = (gap: number) => {
+        timer = setTimeout(() => {
+          blinkNow()
+          const twice = blinkRhythm && Math.random() < blinkRhythm.doubleChance
+          tick(twice ? blinkRhythm.doubleGapMs : cadence[0] + Math.random() * (cadence[1] - cadence[0]))
+        }, gap)
+      }
+      tick(cadence[0] + Math.random() * (cadence[1] - cadence[0]))
       return () => clearTimeout(timer)
-    }, [state, autoBlink, paused, reduced])
+    }, [state, autoBlink, blinkRhythm?.everyMs[0], blinkRhythm?.everyMs[1], blinkRhythm?.durationMs, blinkRhythm?.doubleChance, blinkRhythm?.doubleGapMs, paused, reduced])
 
     useEffect(() => {
       engine.current.faceStale = true
       wake()
-    }, [state, expression, gaze?.x, gaze?.y, turn, eyeScale, eyeAspect, lookAround, paused, reduced, motionStrength, effects, glyphs, paint, showMouth, size])
+    }, [state, expression, gaze?.x, gaze?.y, turn, eyeScale, eyeAspect, eyeTilt, lookAround, paused, reduced, motionStrength, effects, glyphs, paint, showMouth, size])
 
     useEffect(() => {
       const drawFace = (e: typeof engine.current, now: number, spinTurn: number) => {
@@ -1106,6 +1129,7 @@ export const CursorAvatar = React.forwardRef<CursorAvatarHandle, CursorAvatarPro
         const radians = (((p.turn ?? 0) + spinTurn) * Math.PI) / 180
         const base = p.eyeScale ?? 1
         const tall = base * (p.eyeAspect ?? 1)
+        const tilt = (p.eyeTilt ?? 0).toFixed(2)
         const blink = blinkScale(e, now)
 
         rings.forEach((ring, index) => {
@@ -1121,7 +1145,7 @@ export const CursorAvatar = React.forwardRef<CursorAvatarHandle, CursorAvatarPro
             'transform',
             `translate(${(SPHERE_C + SPHERE_R * Math.sin(longitude) + gx).toFixed(2)} ${(
               c[1] + gy
-            ).toFixed(2)}) scale(${clamp(perspective * base, 0.02, 2.4).toFixed(4)} ${clamp(
+            ).toFixed(2)}) rotate(${tilt}) scale(${clamp(perspective * base, 0.02, 2.4).toFixed(4)} ${clamp(
               blink * tall,
               0.02,
               2.4
@@ -1317,9 +1341,9 @@ const towards = (from: number[], to: number[], morph: number) => from.map((v, i)
 const displayedMouth = (e: { currentMouth: number[]; targetMouth: number[]; morph: number }) => towards(e.currentMouth, e.targetMouth, e.morph)
 const displayedGaze = (e: { currentGaze: number[]; targetGaze: number[]; morph: number }) => towards(e.currentGaze, e.targetGaze, e.morph)
 
-function blinkScale(e: { blinkStart: number | null }, now: number) {
+function blinkScale(e: { blinkStart: number | null; blinkDuration: number }, now: number) {
   if (e.blinkStart === null) return 1
-  const t = (now - e.blinkStart) / 320
+  const t = (now - e.blinkStart) / e.blinkDuration
   if (t >= 1) {
     e.blinkStart = null
     return 1

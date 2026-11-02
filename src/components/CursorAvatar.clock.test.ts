@@ -57,6 +57,7 @@ beforeEach(() => {
 afterEach(() => {
   act(() => root.unmount());
   host.remove();
+  vi.restoreAllMocks();
 });
 
 const render = (avatars: Array<Partial<MausAvatarProps> & { ref?: React.Ref<MausAvatarHandle> }>) =>
@@ -97,13 +98,14 @@ describe("CursorAvatar on the shared clock", () => {
     expect(mascotClock().pending()).toBe(0);
   });
 
-  it("lets a small idle mascot settle to no frames, and wakes it for a blink", () => {
+  it("lets a small idle mascot settle to no frames between blinks, and wakes it for a blink", () => {
+    vi.spyOn(Math, "random").mockReturnValue(0.999);
     const ref = createRef<MausAvatarHandle>();
     render([{ state: "idle", size: 24, ref }]);
     run(3000);
     expect(mascotClock().pending()).toBe(0);
     frameRequests = 0;
-    run(2000);
+    run(1500);
     expect(frameRequests).toBe(0);
     act(() => ref.current!.blink());
     run(500);

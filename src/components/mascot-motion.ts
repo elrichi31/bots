@@ -30,7 +30,7 @@ export interface BodyMotion {
 export const MOTION = {
   sleeping: { pulse: [0.028, 4600], tilt: 2 },
   waking: { enter: [0.92, 700], pulse: [0.03, 2200] },
-  idle: { pulse: [0.014, 3600] },
+  idle: { pulse: [0.005, 3400] },
   listening: { bob: [2, 2600], pulse: [0.012, 2600] },
   thinking: { sway: [1.6, 3000], pulse: [0.01, 3000] },
   searching: { bob: [3, 1400], sway: [2.2, 1400] },

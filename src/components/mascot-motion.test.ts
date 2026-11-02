@@ -41,8 +41,8 @@ describe("mascot cadence", () => {
 
   it("gives idle breathing no frames where it cannot be seen and a slow tier where it can", () => {
     expect(delay("idle", 24)).toBe(Infinity);
-    expect(delay("idle", 64)).toBeGreaterThan(30);
-    expect(delay("idle", 64)).toBeLessThanOrEqual(50);
+    expect(delay("idle", 160)).toBeGreaterThan(30);
+    expect(delay("idle", 160)).toBeLessThanOrEqual(50);
     expect(delay("sleeping", 112)).toBeGreaterThan(30);
   });
 
