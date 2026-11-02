@@ -1,0 +1,25 @@
+# Plain HTTP behind Dokploy's Traefik, which terminates TLS. Traefik's
+# X-Forwarded-For is trusted (it sits on a private Docker network) so the
+# server sees the real client for its pairing lockout, and the scheme is
+# always https because Traefik only routes the domain over HTTPS.
+{
+	servers {
+		trusted_proxies static private_ranges
+	}
+}
+
+:80 {
+	encode zstd gzip
+
+	# Webhook ingress has its own per-hook secrets, so it sits outside login.
+	handle /hooks/* {
+		reverse_proxy 127.0.0.1:8800
+	}
+
+	handle {
+		reverse_proxy 127.0.0.1:8799 {
+			header_up X-Forwarded-Proto https
+			flush_interval -1
+		}
+	}
+}
