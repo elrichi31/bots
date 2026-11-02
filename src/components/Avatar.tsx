@@ -10,7 +10,8 @@ import {
 } from "react";
 import { cn } from "@/lib/cn";
 import { CHROME_EYES, CHROME_GRADIENT, MAUS_COLORS, type MausColor, type MausMotion, type MausState } from "@/lib/mascot";
-import { CursorAvatar, POOLS, type BlinkRhythm, type CursorAvatarHandle } from "./CursorAvatar";
+import { CursorAvatar, POOLS, type CursorAvatarHandle } from "./CursorAvatar";
+import type { BlinkRhythm } from "./mascot-blink";
 import { avatarCropRadius, botAvatarProfile, clampAvatarFocus, clampAvatarZoom, mascotFaceInk, type BotAvatarCrop, type MascotFaceColor } from "../../shared/bot-avatar";
 import { MASCOT_BODIES, botMascotBody } from "../../shared/mascot-bodies";
 import { isHalloweenBody, type BotBodyId } from "../../shared/bot-body";

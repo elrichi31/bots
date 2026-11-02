@@ -15,6 +15,7 @@ import {
   type Ring,
 } from "./cursor-face-data"
 import { GLYPH_EASE_MS, MOTION, VIEW_SPAN, bodyTransform, faceTravelUnits, frameFloorMs, morphUnitsPerMs, nextFrameAt, nextMascotFrame, type BodyMotion } from "./mascot-motion"
+import { BLINK, DEFAULT_BLINK_MS, blinkScale, type BlinkRhythm } from "./mascot-blink"
 import { mascotClock, usePrefersReducedMotion, type MascotTicket } from "./mascot-clock"
 
 export { MOTION, bodyTransform }
@@ -678,119 +679,6 @@ const EXPR_CADENCE = {
   ]
 } satisfies Record<CursorState, [number, number]>
 
-const DEFAULT_BLINK_MS = 320
-
-const BLINK = {
-  sleeping: null,
-  waking: null,
-  idle: [
-    6000,
-    14000
-  ],
-  listening: [
-    3000,
-    7000
-  ],
-  thinking: [
-    3500,
-    7000
-  ],
-  searching: [
-    1600,
-    4000
-  ],
-  working: [
-    2800,
-    5500
-  ],
-  excited: [
-    2000,
-    4000
-  ],
-  surprised: [
-    1800,
-    3500
-  ],
-  suspicious: [
-    4500,
-    8000
-  ],
-  angry: [
-    3500,
-    7000
-  ],
-  drowsy: null,
-  happy: [
-    2500,
-    5000
-  ],
-  curious: [
-    2500,
-    5500
-  ],
-  confused: [
-    2800,
-    5500
-  ],
-  bored: [
-    4000,
-    8000
-  ],
-  proud: [
-    3500,
-    7000
-  ],
-  shy: [
-    3000,
-    6000
-  ],
-  sad: [
-    4000,
-    8000
-  ],
-  laughing: [
-    2500,
-    5000
-  ],
-  scared: [
-    1200,
-    3000
-  ],
-  playful: [
-    2000,
-    4500
-  ],
-  celebrate: [
-    2200,
-    4500
-  ],
-  orbit: null,
-  radar: null,
-  progress: null,
-  spawning: null,
-  humming: [
-    4000,
-    8000
-  ],
-  loading: null,
-  dictating: null,
-  sending: null,
-  receiving: null,
-  uploading: null,
-  writing: null,
-  notifying: [
-    2000,
-    4000
-  ],
-  alerting: null,
-  bouncing: null,
-  dragging: [
-    2200,
-    4500
-  ],
-  "powering-down": null
-} satisfies Record<CursorState, [number, number] | null>
-
 export const STATE_GROUPS = {
   "Cycle de vie": [
     "sleeping",
@@ -914,13 +802,6 @@ export interface CursorAvatarProps {
   title?: string | null
   className?: string
   style?: React.CSSProperties
-}
-
-export interface BlinkRhythm {
-  everyMs: [number, number]
-  durationMs: number
-  doubleChance: number
-  doubleGapMs: number
 }
 
 export interface CursorAvatarHandle {
@@ -1340,15 +1221,5 @@ function displayed(e: { current: Ring[]; target: Ring[]; morph: number }): Ring[
 const towards = (from: number[], to: number[], morph: number) => from.map((v, i) => v + (to[i] - v) * clamp(morph, 0, 1))
 const displayedMouth = (e: { currentMouth: number[]; targetMouth: number[]; morph: number }) => towards(e.currentMouth, e.targetMouth, e.morph)
 const displayedGaze = (e: { currentGaze: number[]; targetGaze: number[]; morph: number }) => towards(e.currentGaze, e.targetGaze, e.morph)
-
-function blinkScale(e: { blinkStart: number | null; blinkDuration: number }, now: number) {
-  if (e.blinkStart === null) return 1
-  const t = (now - e.blinkStart) / e.blinkDuration
-  if (t >= 1) {
-    e.blinkStart = null
-    return 1
-  }
-  return Math.max(t < 0.42 ? 1 - t / 0.42 : (t - 0.42) / 0.58, 0.04)
-}
 
 export default CursorAvatar
