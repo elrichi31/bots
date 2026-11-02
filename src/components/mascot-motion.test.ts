@@ -47,7 +47,7 @@ describe("mascot cadence", () => {
   });
 
   it("runs real motion at full rate", () => {
-    expect(delay("working", 36)).toBeCloseTo(FULL_FRAME_MS);
+    expect(delay("excited", 36)).toBeCloseTo(FULL_FRAME_MS);
     expect(delay("celebrate", 24)).toBeCloseTo(FULL_FRAME_MS);
     expect(delay("idle", 24, { blinkingOrSpinning: true })).toBeCloseTo(FULL_FRAME_MS);
     expect(delay("spawning", 64, { stateElapsedMs: 100 })).toBeCloseTo(FULL_FRAME_MS);

@@ -76,10 +76,10 @@ describe("CursorAvatar on the shared clock", () => {
     expect(mascotClock().pending()).toBe(12);
   });
 
-  it("paints a still mascot with its state's face and then asks for nothing", () => {
+  it("paints a still mascot with the calm face whatever its state, and then asks for nothing", () => {
     render([{ state: "sleeping", animated: false, size: 24 }]);
     run(100);
-    expect(eyePaths()[0]).toBe(toPath(EXPRESSIONS[POOLS.sleeping[0]][0]));
+    expect(eyePaths()[0]).toBe(toPath(EXPRESSIONS[POOLS.idle[0]][0]));
     frameRequests = 0;
     run(2000);
     expect(frameRequests).toBe(0);

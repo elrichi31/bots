@@ -34,7 +34,7 @@ export const MOTION = {
   listening: { bob: [2, 2600], pulse: [0.012, 2600] },
   thinking: { sway: [1.6, 3000], pulse: [0.01, 3000] },
   searching: { bob: [3, 1400], sway: [2.2, 1400] },
-  working: { bob: [2.5, 900], squash: 0.22 },
+  working: { bob: [3, 1300], sway: [1.4, 2600] },
 
   excited: { bob: [9, 520], sway: [3, 1040], squash: 0.35 },
   surprised: { enter: [1.14, 340], jitter: [0.8, 120] },

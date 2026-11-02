@@ -893,6 +893,8 @@ export interface CursorAvatarProps {
   flip?: boolean
   spring?: number
   eyeScale?: number
+  eyeAspect?: number
+  faceScale?: number
   showMouth?: boolean
   mouthStroke?: number
   motion?: number
@@ -928,6 +930,8 @@ export const CursorAvatar = React.forwardRef<CursorAvatarHandle, CursorAvatarPro
       flip = false,
       spring = 7,
       eyeScale = 1,
+      eyeAspect = 1,
+      faceScale = 1,
       showMouth = true,
       mouthStroke = MOUTH_STROKE,
       motion,
@@ -969,6 +973,7 @@ export const CursorAvatar = React.forwardRef<CursorAvatarHandle, CursorAvatarPro
       turn,
       spring,
       eyeScale,
+      eyeAspect,
       paused,
       reduced,
       lookAround,
@@ -1084,7 +1089,7 @@ export const CursorAvatar = React.forwardRef<CursorAvatarHandle, CursorAvatarPro
     useEffect(() => {
       engine.current.faceStale = true
       wake()
-    }, [state, expression, gaze?.x, gaze?.y, turn, eyeScale, lookAround, paused, reduced, motionStrength, effects, glyphs, paint, showMouth, size])
+    }, [state, expression, gaze?.x, gaze?.y, turn, eyeScale, eyeAspect, lookAround, paused, reduced, motionStrength, effects, glyphs, paint, showMouth, size])
 
     useEffect(() => {
       const drawFace = (e: typeof engine.current, now: number, spinTurn: number) => {
@@ -1100,6 +1105,7 @@ export const CursorAvatar = React.forwardRef<CursorAvatarHandle, CursorAvatarPro
         const gy = clamp(p.gaze?.y ?? 0, -1, 1) * GAZE_TRAVEL.y
         const radians = (((p.turn ?? 0) + spinTurn) * Math.PI) / 180
         const base = p.eyeScale ?? 1
+        const tall = base * (p.eyeAspect ?? 1)
         const blink = blinkScale(e, now)
 
         rings.forEach((ring, index) => {
@@ -1116,7 +1122,7 @@ export const CursorAvatar = React.forwardRef<CursorAvatarHandle, CursorAvatarPro
             `translate(${(SPHERE_C + SPHERE_R * Math.sin(longitude) + gx).toFixed(2)} ${(
               c[1] + gy
             ).toFixed(2)}) scale(${clamp(perspective * base, 0.02, 2.4).toFixed(4)} ${clamp(
-              blink * base,
+              blink * tall,
               0.02,
               2.4
             ).toFixed(4)}) translate(${(-c[0]).toFixed(2)} ${(-c[1]).toFixed(2)})`
@@ -1272,7 +1278,7 @@ export const CursorAvatar = React.forwardRef<CursorAvatarHandle, CursorAvatarPro
           <g ref={bodyContent}>
           {picture ? <image href={picture} x="-15" y="-15" width={VIEW_SPAN} height={VIEW_SPAN} preserveAspectRatio="none" /> : <g transform={silhouette.fit || undefined} dangerouslySetInnerHTML={{ __html: body }} />}
           <g clipPath={`url(#${uid}-clip)`} visibility={picture ? 'hidden' : undefined}>
-            <g transform={anchorTransform(silhouette.anchor)}>
+            <g transform={anchorTransform({ ...silhouette.anchor, scale: silhouette.anchor.scale * faceScale })}>
               <path ref={eye0} fill={eyeColor} />
               <path ref={eye1} fill={eyeColor} />
               {showMouth && (

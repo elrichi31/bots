@@ -10,7 +10,7 @@ import {
 } from "react";
 import { cn } from "@/lib/cn";
 import { CHROME_EYES, CHROME_GRADIENT, MAUS_COLORS, type MausColor, type MausMotion, type MausState } from "@/lib/mascot";
-import { CursorAvatar, type CursorAvatarHandle } from "./CursorAvatar";
+import { CursorAvatar, POOLS, type CursorAvatarHandle } from "./CursorAvatar";
 import { avatarCropRadius, botAvatarProfile, clampAvatarFocus, clampAvatarZoom, mascotFaceInk, type BotAvatarCrop, type MascotFaceColor } from "../../shared/bot-avatar";
 import { MASCOT_BODIES, botMascotBody } from "../../shared/mascot-bodies";
 import { isHalloweenBody, type BotBodyId } from "../../shared/bot-body";
@@ -58,19 +58,23 @@ function mix(hex: string, toward: string, t: number): string {
     .join("")}`;
 }
 
+const FLAT_EYES = "#18181b";
+const CALM_EXPRESSION = POOLS.idle[0];
+const FACE_TURN = 18;
+const FACE_LIFT = -0.35;
+const FLAT_EYE_SCALE = 1.15;
+const FLAT_EYE_ASPECT = 1.2;
+const FLAT_FACE_SCALE = 1.6;
+
 const gradientFor = (color: MausColor): [string, string, string] => {
   if (color === "chrome") return CHROME_GRADIENT;
-  const fill = MAUS_COLORS[color] ?? MAUS_COLORS.green;
-  return [mix(fill, "#ffffff", 0.55), fill, mix(fill, "#000000", 0.42)];
+  const fill = mix(MAUS_COLORS[color] ?? MAUS_COLORS.green, "#ffffff", 0.12);
+  return [fill, fill, fill];
 };
 
 export function roomAvatarGradient(color: MausColor): [string, string, string] {
   const fill = `var(--identity-${color})`;
-  return [
-    `color-mix(in srgb, ${fill} 82%, #ffffff)`,
-    fill,
-    `color-mix(in srgb, ${fill} 82%, #000000)`,
-  ];
+  return [fill, fill, fill];
 }
 
 export type MausAvatarHandle = CursorAvatarHandle;
@@ -190,19 +194,22 @@ function GradientAvatarComponent(
       <CursorAvatar
         ref={inner}
         state={motionState ?? state}
-        expression={expression}
+        expression={expression ?? CALM_EXPRESSION}
         size={size}
         silhouette={silhouette}
         gradient={gradient ?? gradientFor(color)}
         picture={chrome && !faceInk ? steelBodyImage(silhouette.id, size, globalThis.devicePixelRatio ?? 1) : null}
-        eyeColor={faceInk ?? (chrome ? CHROME_EYES : undefined)}
+        eyeColor={faceInk ?? (chrome ? CHROME_EYES : FLAT_EYES)}
         title={label ?? null}
         lookAround={lookAround ?? (forward ? 0 : 1)}
-        gaze={{ x: (gaze?.x ?? 0) + pointer.x, y: (gaze?.y ?? 0) + pointer.y }}
-        turn={turn}
+        gaze={{ x: (gaze?.x ?? 0) + pointer.x, y: (gaze?.y ?? FACE_LIFT) + pointer.y }}
+        turn={turn ?? FACE_TURN}
         spring={spring}
-        eyeScale={eyeScale}
-        showMouth={showMouth}
+        eyeScale={eyeScale ?? FLAT_EYE_SCALE}
+        eyeAspect={FLAT_EYE_ASPECT}
+        faceScale={FLAT_FACE_SCALE}
+        showMouth={showMouth ?? false}
+        effects={false}
         mouthStroke={mouthStroke}
         paused={!animated}
       />
