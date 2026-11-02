@@ -460,17 +460,17 @@ const Bubble = memo(function Bubble({
           data-chat-bubble={simple ? "simple" : ""}
           className={cn(
             tabled ? "w-full" : "w-fit",
-            simple ? !tabled && SIMPLE_BUBBLE_MAX : "max-w-[min(var(--chat-bubble-max),var(--chat-bubble-pct))] rounded-2xl text-[15px] leading-relaxed",
+            simple ? !tabled && SIMPLE_BUBBLE_MAX : "max-w-[min(var(--chat-bubble-max),var(--chat-bubble-pct))] rounded-[18px] text-[14px] leading-[22px]",
             emerging && "turn-answer",
             user && webhookView
               ? cn("overflow-hidden border border-accent/25 bg-card text-ink", simple ? cn("rounded-[18px]", SIMPLE_BUBBLE_TEXT) : "shadow-[0_10px_30px_rgba(0,0,0,0.18)]")
               : attachmentsOnly || split || tabled
                 ? cn("text-ink", simple && SIMPLE_BUBBLE_TEXT)
                 : user
-                  ? cn("whitespace-pre-wrap [overflow-wrap:anywhere] text-ink", simple ? SIMPLE_USER_BUBBLE : "bg-bubble-user px-4 py-2.5", ownBubbleStyle && "user-bubble-colored", simple && ownBubbleStyle && "antialiased")
+                  ? cn("whitespace-pre-wrap [overflow-wrap:anywhere] text-ink", simple ? SIMPLE_USER_BUBBLE : "bg-bubble-user px-3 py-[7px]", ownBubbleStyle && "user-bubble-colored", simple && ownBubbleStyle && "antialiased")
                   : formatted
                     ? cn(formattedReplyWidth(text), "px-1 text-ink")
-                    : simple ? SIMPLE_BOT_BUBBLE : "bg-card px-4 py-2.5 text-ink",
+                    : simple ? SIMPLE_BOT_BUBBLE : "bg-card px-3 py-[7px] text-ink",
             simple && join && !split && !attachmentsOnly && !tabled && joinedCorners(user ? "end" : "start", join),
           )}
           style={user && !webhookView && !attachmentsOnly ? ownBubbleStyle : undefined}
@@ -1007,7 +1007,7 @@ export function ChatView({ bot: profile }: { bot: Bot }) {
 
   return (
     <ThreadLinkContext value={threadLink}>
-    <main className="relative flex h-full min-w-0 flex-1 flex-col bg-app">
+    <main data-conversation="bot" className="relative flex h-full min-w-0 flex-1 flex-col bg-app">
       <CallOverlay bot={bot} />
       <GlassScrollFrame className="flex-1 [--glass-tint:var(--color-app)]">
       {/* z-[25]: above the room set-up card (z-20), below the CallOverlay (z-30). */}

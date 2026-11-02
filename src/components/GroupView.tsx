@@ -214,15 +214,15 @@ function RoomTextMessage({
           data-chat-bubble={simple ? "simple" : ""}
           className={cn(
             tabled ? "w-full" : "w-fit",
-            simple ? cn(!tabled && SIMPLE_BUBBLE_MAX, SIMPLE_BUBBLE_TEXT) : "max-w-[min(var(--chat-bubble-max),var(--chat-bubble-pct))] rounded-2xl text-[15px] leading-relaxed",
+            simple ? cn(!tabled && SIMPLE_BUBBLE_MAX, SIMPLE_BUBBLE_TEXT) : "max-w-[min(var(--chat-bubble-max),var(--chat-bubble-pct))] rounded-[18px] text-[14px] leading-[22px]",
             !user && emerging && "turn-answer",
             tabled || (!user && !m.text?.trim() && !m.replyToId && m.attachments?.length)
               ? "text-ink"
               : !simple && !user && isFormattedReply(m.text ?? "")
                 ? cn(formattedReplyWidth(m.text ?? ""), "px-1 text-ink")
                 : user
-                  ? cn("chat-text whitespace-pre-wrap [overflow-wrap:anywhere] text-ink", simple ? SIMPLE_USER_BUBBLE : "bg-bubble-user px-4 py-2.5")
-                  : simple ? SIMPLE_BOT_BUBBLE : "bg-card px-4 py-2.5 text-ink",
+                  ? cn("chat-text whitespace-pre-wrap [overflow-wrap:anywhere] text-ink", simple ? SIMPLE_USER_BUBBLE : "bg-bubble-user px-3 py-[7px]")
+                  : simple ? SIMPLE_BOT_BUBBLE : "bg-card px-3 py-[7px] text-ink",
           )}
           title={new Date(m.at).toLocaleString()}
         >
@@ -1004,7 +1004,7 @@ export function GroupView({ group }: { group: Group }) {
   useEffect(() => setMembersOpen(false), [group.id]);
 
   return (
-    <main className="relative flex h-full min-w-0 flex-1 flex-col bg-app">
+    <main data-conversation="group" className="relative flex h-full min-w-0 flex-1 flex-col bg-app">
       <GroupCallOverlay group={group} members={members} />
       {membersOpen && !remoteClient && !group.dm && (
         <ManageMembersPanel group={group} onClose={closeMembers} triggerRef={membersTriggerRef} />

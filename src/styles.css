@@ -206,12 +206,16 @@
 /* Tokens that no utility generates — declared outside `@theme` so Tailwind
    can't tree-shake them away, and so a skin can redefine them freely. */
 :root {
-  --chat-bubble-max: 35rem;
-  --chat-bubble-pct: 80%;
+  --chat-bubble-max: 40rem;
+  --chat-bubble-pct: 100%;
+  --conversation-font-size: 14px;
+  --conversation-line-height: 22px;
+  --conversation-opposed-inset: clamp(32px, calc((100% - 480px) * 0.4), 20%);
+  --conversation-pane: var(--color-app);
   --chat-card-pct: 88%;
   --chat-prose-max: 44rem;
   /* .chat-column: fills a narrow pane, then stops at this width and centers, so wider windows only grow the gutters. */
-  --chat-column-max: 60rem;
+  --chat-column-max: 54rem;
   /* Menus; a phone rounds them like its sheets. */
   --radius-menu: 14px;
 }
@@ -262,6 +266,7 @@
    ───────────────────────────────────────────────────────────────────────── */
 [data-skin="midnight"] {
   --code-color-scheme: dark;
+  --conversation-pane: #161616;
   --color-app: #121212;
   --color-panel: #0e0e0e;
   --color-raised: #202020;
@@ -755,6 +760,7 @@
    4.5:1 (pnpm check:contrast).
    ───────────────────────────────────────────────────────────────────────── */
 [data-skin="daylight"] {
+  --conversation-pane: #ffffff;
   --code-color-scheme: light;
   --frame-shade: 6%;
   --color-app: #fcfcfc;           /* the thread */
@@ -3150,3 +3156,64 @@ button:disabled.bg-danger {
 .trace-step-box { background: color-mix(in srgb, #8b7cf6 14%, var(--color-card)); border-color: color-mix(in srgb, #8b7cf6 30%, var(--color-card)); }
 .trace-step-ink { color: color-mix(in srgb, #7c6cf0 85%, var(--color-ink)); }
 .trace-tool-ink { color: color-mix(in srgb, #1f9a8c 80%, var(--color-ink)); }
+
+[data-conversation] {
+  --color-app: var(--conversation-pane);
+  background-color: var(--conversation-pane);
+}
+
+[data-conversation] [data-chat-bubble] {
+  font-size: var(--conversation-font-size);
+  line-height: var(--conversation-line-height);
+}
+
+[data-conversation] [data-chat-bubble] :is(.chat-md, .chat-text) {
+  line-height: var(--conversation-line-height);
+}
+
+[data-conversation] [data-chat-bubble] :is(.chat-md[dir="rtl"], .chat-text[dir="rtl"]) {
+  line-height: 1.75;
+}
+
+[data-conversation] [data-chathead-pill] {
+  box-shadow: none;
+  min-height: 40px;
+  transition: background-color 120ms ease-out, box-shadow 120ms ease-out;
+}
+
+[data-conversation-composer="full"] {
+  background-color: var(--color-composer);
+  box-shadow: 0 0 0 0.5px var(--color-composer-ring), 0 4px 18px -12px rgb(0 0 0 / 0.24);
+  transition: box-shadow 150ms ease-out, border-radius 150ms ease-out;
+}
+
+[data-conversation-composer="full"]:focus-within {
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-ink) 22%, transparent), 0 4px 18px -12px rgb(0 0 0 / 0.24);
+}
+
+[data-conversation-details] {
+  --color-app: var(--conversation-pane);
+  background-color: var(--conversation-pane);
+}
+
+@media (min-width: 768px) {
+  [data-sidebar-density="comfortable"] [data-sidebar-bot-row] {
+    border-radius: 12px;
+    transition: background-color 120ms ease-out;
+  }
+}
+
+@media (min-width: 768px) and (pointer: fine) {
+  [data-conversation] [data-conversation-composer] textarea {
+    font-size: var(--conversation-font-size);
+    line-height: var(--conversation-line-height);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-conversation] [data-chathead-pill],
+  [data-conversation-composer],
+  [data-sidebar-density] [data-sidebar-bot-row] {
+    transition: none;
+  }
+}

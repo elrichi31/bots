@@ -95,7 +95,7 @@ export function BotPanel({ bot, derived, linkedSection, onClose }: {
   const backLabel = stack.length > 1 ? t(PAGES[stack[stack.length - 2]!].title, { name: bot.name }) : t(TAB_LABEL[tab]);
 
   return (
-    <div className="flex min-h-0 flex-1 flex-col" onKeyDown={onKeyDown}>
+    <div data-conversation-details className="flex min-h-0 flex-1 flex-col" onKeyDown={onKeyDown}>
       <div {...dragProps} className="flex h-[50px] shrink-0 items-start justify-end gap-2.5 px-[13px] pt-[13px]">
         <ChatShareMenu bot={bot} className={roundButtonCls} />
         <button
