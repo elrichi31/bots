@@ -41,3 +41,19 @@ export function grokBodyName(id: GrokBodyId): string {
   const shape = grokShape(id);
   return shape.charAt(0).toUpperCase() + shape.slice(1);
 }
+
+export const DEFAULT_GROK_BODY: GrokBodyId = "grok-blob";
+
+const LEGACY_GROK_BODY: Readonly<Record<string, GrokBodyId>> = {
+  cursor: "grok-wedge", blob: "grok-blob", circle: "grok-pebble",
+  squircle: "grok-squircle", capsule: "grok-capsule", drop: "grok-teardrop",
+  shield: "grok-shield", hexagon: "grok-hex", diamond: "grok-gem", star: "grok-star",
+};
+
+/** Resolves stored legacy shapes without rewriting a bot's saved profile. */
+export function grokBodyId(value: unknown): GrokBodyId {
+  if (isGrokBody(value)) return value;
+  return typeof value === "string" && Object.hasOwn(LEGACY_GROK_BODY, value)
+    ? LEGACY_GROK_BODY[value]!
+    : DEFAULT_GROK_BODY;
+}

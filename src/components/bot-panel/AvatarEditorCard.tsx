@@ -6,8 +6,7 @@ import { t } from "@/lib/i18n";
 import type { LocaleKey } from "@/locales";
 import { colorSwatch, MAUS_COLOR_LABEL, MAUS_COLOR_NAMES, PICKABLE_STATES, type MausState } from "@/lib/mascot";
 import type { Bot } from "@/state/store";
-import { GROK_BODY_IDS, grokBodyName } from "../../../shared/grok-bodies";
-import { MASCOT_BODIES, MASCOT_BODY_IDS } from "../../../shared/mascot-bodies";
+import { GROK_BODY_IDS, grokBodyName, grokBodyId } from "../../../shared/grok-bodies";
 import { HALLOWEEN_BODIES, HALLOWEEN_BODY_IDS } from "../../../shared/halloween-bodies";
 import { isHalloweenBody, type BotBodyId } from "../../../shared/bot-body";
 import { useHalloweenDressed, wornBody } from "@/lib/halloween-dress";
@@ -66,7 +65,7 @@ export function AvatarEditorCard({ bot, activeState, onPatch, onClose }: {
     tabsRef.current?.querySelector<HTMLElement>('[aria-selected="true"]')?.focus();
   }, []);
   const pickMascot = (patch: AvatarPatch) => onPatch(crop === "mascot" ? patch : { ...patch, avatarCrop: "mascot" });
-  const body = bot.mascotBody ?? "cursor";
+  const body = isHalloweenBody(bot.mascotBody) ? bot.mascotBody : grokBodyId(bot.mascotBody);
   const dressed = useHalloweenDressed();
   const costume = wornBody(bot.mascotBody, bot.color, dressed);
   const [moreLooks, setMoreLooks] = useState(() => dressed || isHalloweenBody(body) || Boolean(bot.mascotExpression && bot.mascotExpression !== "idle"));
@@ -135,15 +134,9 @@ export function AvatarEditorCard({ bot, activeState, onPatch, onClose }: {
       <div className="p-3">
         {tab === "bot" && (
           <>
-            <div className="grid grid-cols-5 gap-1.5">
-              {MASCOT_BODY_IDS.map((id) => bodyButton(id, MASCOT_BODIES[id].name))}
+            <div className="grid grid-cols-5 gap-1.5" data-grok-bodies>
+              {GROK_BODY_IDS.map((id) => bodyButton(id, `Grok ${grokBodyName(id)}`))}
             </div>
-            <details className="mt-3" open={body.startsWith("grok-") || undefined}>
-              <summary className="cursor-pointer px-1 py-1 text-[12px] text-ink-secondary">Grok Bot</summary>
-              <div className="grid grid-cols-5 gap-1.5 pt-2" data-grok-bodies>
-                {GROK_BODY_IDS.map((id) => bodyButton(id, grokBodyName(id)))}
-              </div>
-            </details>
             <div className="flex flex-wrap justify-center gap-2 px-1 pb-1 pt-3.5">
               {MAUS_COLOR_NAMES.map((color) => (
                 <button

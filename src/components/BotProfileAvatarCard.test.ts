@@ -4,7 +4,6 @@ import { describe, expect, it, vi } from "vitest";
 
 import { StoreProvider, type Bot } from "@/state/store";
 import { GROK_BODY_IDS, grokBodyName } from "../../shared/grok-bodies";
-import { MASCOT_BODY_IDS, MASCOT_BODIES } from "../../shared/mascot-bodies";
 import { HALLOWEEN_BODIES, HALLOWEEN_BODY_IDS } from "../../shared/halloween-bodies";
 import { BotProfileAvatarCard } from "./BotProfileAvatarCard";
 
@@ -44,9 +43,11 @@ describe("BotProfileAvatarCard body picker", () => {
     const markup = renderCard(makeBot());
 
     expect(markup).toContain(">Body<");
-    for (const id of MASCOT_BODY_IDS) {
-      expect(markup).toContain(`aria-label="Use the ${MASCOT_BODIES[id].name} body"`);
+    for (const id of GROK_BODY_IDS) {
+      expect(markup).toContain(`aria-label="Use the Grok ${grokBodyName(id)} body"`);
     }
+    expect(markup).not.toContain('aria-label="Use the Cursor body"');
+    expect(markup).not.toContain('aria-label="Use the Diamond body"');
   });
 
   it("offers every Grok body and marks the saved choice selected", () => {
@@ -65,18 +66,18 @@ describe("BotProfileAvatarCard body picker", () => {
     expect(markup).toContain(`aria-pressed="true" aria-label="Use the ${HALLOWEEN_BODIES.witch.name} body"`);
   });
 
-  it("marks the current body pressed and the rest unpressed, defaulting to cursor", () => {
+  it("marks the current body pressed and the rest unpressed, defaulting to the Grok blob", () => {
     const markup = renderCard(makeBot());
 
-    expect(markup).toContain(`aria-pressed="true" aria-label="Use the ${MASCOT_BODIES.cursor.name} body"`);
-    expect(markup).toContain(`aria-pressed="false" aria-label="Use the ${MASCOT_BODIES.star.name} body"`);
+    expect(markup).toContain(`aria-pressed="true" aria-label="Use the Grok Blob body"`);
+    expect(markup).toContain(`aria-pressed="false" aria-label="Use the Grok Star body"`);
   });
 
   it("reflects an explicitly chosen body", () => {
     const markup = renderCard(makeBot({ mascotBody: "star" }));
 
-    expect(markup).toContain(`aria-pressed="true" aria-label="Use the ${MASCOT_BODIES.star.name} body"`);
-    expect(markup).toContain(`aria-pressed="false" aria-label="Use the ${MASCOT_BODIES.cursor.name} body"`);
+    expect(markup).toContain(`aria-pressed="true" aria-label="Use the Grok Star body"`);
+    expect(markup).toContain(`aria-pressed="false" aria-label="Use the Grok Blob body"`);
   });
 
   it("offers zoom and drag framing for a custom image", () => {
@@ -100,7 +101,7 @@ describe("BotProfileAvatarCard body picker", () => {
     const markup = renderCard(makeBot({ avatarCrop: "circle" }));
 
     expect(markup).not.toContain(">Body<");
-    expect(markup).not.toContain(`aria-label="Use the ${MASCOT_BODIES.cursor.name} body"`);
+    expect(markup).not.toContain(`aria-label="Use the Grok Blob body"`);
   });
 
   it("hides the body picker for every flat crop, not just circle", () => {

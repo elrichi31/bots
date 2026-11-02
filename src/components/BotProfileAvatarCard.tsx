@@ -11,10 +11,9 @@ import {
   type MausState,
 } from "@/lib/mascot";
 import { BOT_AVATAR_CROPS } from "../../shared/bot-avatar";
-import { GROK_BODY_IDS, grokBodyName } from "../../shared/grok-bodies";
-import { MASCOT_BODIES, MASCOT_BODY_IDS } from "../../shared/mascot-bodies";
+import { GROK_BODY_IDS, grokBodyName, grokBodyId } from "../../shared/grok-bodies";
 import { HALLOWEEN_BODIES, HALLOWEEN_BODY_IDS } from "../../shared/halloween-bodies";
-import type { BotBodyId } from "../../shared/bot-body";
+import { isHalloweenBody, type BotBodyId } from "../../shared/bot-body";
 import { BotAvatar, MausAvatar } from "./Avatar";
 import { AvatarImageGenerator } from "./AvatarImageGenerator";
 import { AvatarFraming, OrganizationAvatarIcons, RESET_MASCOT_PATCH, useAvatarImage, type AvatarPatch } from "./avatar-editing";
@@ -169,9 +168,6 @@ export function BotProfileAvatarCard({
               {t("botIdentity.body")}
             </div>
             <div className="grid grid-cols-5 gap-1.5">
-              {MASCOT_BODY_IDS.map((id) => (
-                <BodyButton key={id} id={id} name={MASCOT_BODIES[id].name} bot={bot} busy={busy} onPatch={onPatch} />
-              ))}
               {GROK_BODY_IDS.map((id) => (
                 <BodyButton key={id} id={id} name={`Grok ${grokBodyName(id)}`} bot={bot} busy={busy} onPatch={onPatch} />
               ))}
@@ -208,7 +204,7 @@ function BodyButton({ id, name, bot, busy, onPatch }: {
   busy: boolean;
   onPatch: (patch: AvatarPatch) => void;
 }) {
-  const selected = (bot.mascotBody ?? "cursor") === id;
+  const selected = (isHalloweenBody(bot.mascotBody) ? bot.mascotBody : grokBodyId(bot.mascotBody)) === id;
   return (
     <button
       type="button"

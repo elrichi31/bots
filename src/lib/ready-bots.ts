@@ -1,5 +1,5 @@
 import type { BotRoutineTemplate, NewBotDefaults } from "../../shared/new-bot-defaults";
-import type { MascotBodyId } from "../../shared/mascot-bodies";
+import type { GrokBodyId } from "../../shared/grok-bodies";
 import type { MausColor } from "../../shared/wire";
 
 export type ReadyBotCategory = "everyday" | "work" | "writing" | "design" | "sales" | "personal";
@@ -13,7 +13,7 @@ export interface ReadyBot {
   title: string;
   description: string;
   soul: string;
-  look: { color: MausColor; mascotBody: MascotBodyId };
+  look: { color: MausColor; mascotBody: GrokBodyId };
   tryAsking: string[];
   /** Connected apps the bot works best with; suggested, never connected for the person. */
   apps: string[];
@@ -40,7 +40,7 @@ export const READY_BOTS: ReadyBot[] = [
       "Say plainly when you are unsure or could not check something, and never present a guess as a fact.",
       "When a task will take several steps, say what you are about to do in one line before doing it.",
     ].join("\n"),
-    look: { color: "green", mascotBody: "cursor" },
+    look: { color: "green", mascotBody: "grok-wedge" },
     tryAsking: ["Plan my week from this list of to-dos", "Explain this contract clause in plain English", "Draft a polite reply declining this meeting"],
     apps: [],
   },
@@ -57,7 +57,7 @@ export const READY_BOTS: ReadyBot[] = [
       "Never unsubscribe, delete, archive, or forward mail on your own.",
       "Note recurring senders and the user's preferences in memory so each triage gets sharper.",
     ].join("\n"),
-    look: { color: "blue", mascotBody: "squircle" },
+    look: { color: "blue", mascotBody: "grok-squircle" },
     tryAsking: ["What in my inbox needs me today?", "Draft replies to the three most urgent emails", "Who have I not answered in over a week?"],
     apps: ["gmail"],
     routines: [paused("Morning inbox triage", "Triage my unread email and draft replies for anything that needs one.", "08:30", WEEKDAYS)],
@@ -74,7 +74,7 @@ export const READY_BOTS: ReadyBot[] = [
       "Never present a guess as a finding. If the evidence is thin, say so and suggest what would settle it.",
       "Keep briefs scannable: a three-line summary, then sections, then sources.",
     ].join("\n"),
-    look: { color: "purple", mascotBody: "diamond" },
+    look: { color: "purple", mascotBody: "grok-gem" },
     tryAsking: ["What changed in EU AI rules this year? Sources please", "Compare the top three note-taking apps for a small team", "Fact-check the claims in this paragraph"],
     apps: [],
   },
@@ -90,7 +90,7 @@ export const READY_BOTS: ReadyBot[] = [
       "Run the project's tests after changes and report the real output, including failures.",
       "Explain what changed and why in a few lines. Never push, publish, or delete branches unless told to.",
     ].join("\n"),
-    look: { color: "cyan", mascotBody: "hexagon" },
+    look: { color: "cyan", mascotBody: "grok-hex" },
     tryAsking: ["Find why the tests fail and fix it", "Explain how this repository is organised", "Add input validation to the signup form"],
     apps: ["github"],
   },
@@ -106,7 +106,7 @@ export const READY_BOTS: ReadyBot[] = [
       "Track recurring questions in memory and say when one keeps coming back.",
       "Never post, reply, or react in the channels yourself; you report to the user.",
     ].join("\n"),
-    look: { color: "orange", mascotBody: "shield" },
+    look: { color: "orange", mascotBody: "grok-shield" },
     tryAsking: ["What did the community ask about since yesterday?", "List open bug reports from this week", "Which question keeps coming up?"],
     apps: ["discord", "slack"],
     routines: [paused("Community digest", "Summarise what happened in my community channels since the last digest.", "17:00", WEEKDAYS)],
@@ -127,7 +127,7 @@ export const READY_BOTS: ReadyBot[] = [
       "On the weekly plan, propose next week's posts with a channel and time for each, then add them to Postiz as drafts.",
       "If the postiz tools are missing, say in one line that the user can connect Postiz in Apps, and offer to write the posts here meanwhile.",
     ].join("\n"),
-    look: { color: "coral", mascotBody: "star" },
+    look: { color: "coral", mascotBody: "grok-star" },
     tryAsking: ["Plan next week's posts for LinkedIn and X", "Draft three posts about our launch and add them to Postiz", "What is scheduled in Postiz this week?"],
     apps: ["postiz"],
     notes: {
@@ -148,7 +148,7 @@ export const READY_BOTS: ReadyBot[] = [
       "Draft messages when a follow-up is due, but always ask before sending, booking, or changing anything.",
       "Flag clashes and days that are overbooked before they happen.",
     ].join("\n"),
-    look: { color: "yellow", mascotBody: "capsule" },
+    look: { color: "yellow", mascotBody: "grok-capsule" },
     tryAsking: ["What's on today, and what's overdue?", "Find an hour for deep work this week", "Which follow-ups am I late on?"],
     apps: ["googlecalendar", "notion", "linear"],
     routines: [paused("Daily plan", "Give me today's commitments, anything overdue, and the next action for each.", "08:00", WEEKDAYS)],
@@ -166,7 +166,7 @@ export const READY_BOTS: ReadyBot[] = [
       "When editing, return the improved text first, then a short list of the main changes.",
       "Learn the user's voice: note words they like and avoid in memory, and follow them.",
     ].join("\n"),
-    look: { color: "pink", mascotBody: "drop" },
+    look: { color: "pink", mascotBody: "grok-teardrop" },
     tryAsking: ["Turn these notes into a LinkedIn post", "Tighten this email to half its length", "Write three subject lines for this newsletter"],
     apps: [],
   },
@@ -183,7 +183,7 @@ export const READY_BOTS: ReadyBot[] = [
       "Never invent data. If a question cannot be answered from the data, say what is missing.",
       "Call out outliers and caveats that could change the conclusion.",
     ].join("\n"),
-    look: { color: "teal", mascotBody: "circle" },
+    look: { color: "teal", mascotBody: "grok-pebble" },
     tryAsking: ["What are the top 10 customers by revenue in this CSV?", "Show the monthly trend and anything unusual", "Find duplicate rows in this export"],
     apps: [],
   },
@@ -199,7 +199,7 @@ export const READY_BOTS: ReadyBot[] = [
       "Quote people only when the transcript says it; never invent quotes, owners, or dates. Mark anything uncertain with (unclear).",
       "Offer to draft the follow-up message, and never send it yourself.",
     ].join("\n"),
-    look: { color: "coral", mascotBody: "squircle" },
+    look: { color: "coral", mascotBody: "grok-squircle" },
     tryAsking: ["Summarise this transcript into decisions and action items", "Draft the follow-up email from these notes", "What did we leave unresolved?"],
     apps: [],
   },
@@ -216,7 +216,7 @@ export const READY_BOTS: ReadyBot[] = [
       "Keep the user's travel preferences in memory/travel.md and use them every time.",
       "Never book or pay for anything; give links and options instead.",
     ].join("\n"),
-    look: { color: "blue", mascotBody: "star" },
+    look: { color: "blue", mascotBody: "grok-star" },
     tryAsking: ["Plan four relaxed days in Lisbon in May", "What should I book now for a Japan trip in autumn?", "Make a packing list for a rainy week in Scotland"],
     apps: ["googlecalendar"],
     notes: {
@@ -236,7 +236,7 @@ export const READY_BOTS: ReadyBot[] = [
       "Keep a list of weak topics in memory/study.md and suggest reviewing them.",
       "Do not write graded work for the user to hand in as their own; teach them to do it.",
     ].join("\n"),
-    look: { color: "purple", mascotBody: "blob" },
+    look: { color: "purple", mascotBody: "grok-blob" },
     tryAsking: ["Explain recursion like I'm new to programming", "Quiz me on the French Revolution", "Make a one-week revision plan for my exam"],
     apps: [],
     notes: {
@@ -256,7 +256,7 @@ export const READY_BOTS: ReadyBot[] = [
       "Reply with the rewritten text first, then a short list of changes, each with the reason (for example: cut a cliché, split a long sentence).",
       "If the user shares samples of their writing, note their voice in memory/voice.md and match it.",
     ].join("\n"),
-    look: { color: "pink", mascotBody: "blob" },
+    look: { color: "pink", mascotBody: "grok-blob" },
     tryAsking: ["Make this email sound less robotic", "Rewrite this landing page intro in my voice", "Here are three posts I wrote; learn my style"],
     apps: [],
     notes: {
@@ -276,7 +276,7 @@ export const READY_BOTS: ReadyBot[] = [
       "Check text contrast against WCAG AA and say which elements fail.",
       "End with the two or three things that already work well, so they survive the next round.",
     ].join("\n"),
-    look: { color: "red", mascotBody: "diamond" },
+    look: { color: "red", mascotBody: "grok-gem" },
     tryAsking: ["Critique this landing page screenshot", "What would make this dashboard easier to scan?", "Check this mobile screen for accessibility problems"],
     apps: ["figma"],
   },
@@ -293,7 +293,7 @@ export const READY_BOTS: ReadyBot[] = [
       "Finish with the three changes that would help most on the next call, each with an example line the rep could say.",
       "Keep recurring patterns for each rep in memory so coaching builds over time.",
     ].join("\n"),
-    look: { color: "orange", mascotBody: "star" },
+    look: { color: "orange", mascotBody: "grok-star" },
     tryAsking: ["Score this discovery call transcript", "How did I handle the pricing objection?", "What should I ask differently next time?"],
     apps: ["gong", "hubspot"],
   },
@@ -310,7 +310,7 @@ export const READY_BOTS: ReadyBot[] = [
       "On the weekly check, list which plants are due or overdue, and one seasonal tip if it is useful.",
       "When the user describes or shows a struggling plant, suggest the most likely causes in order and one thing to try first.",
     ].join("\n"),
-    look: { color: "green", mascotBody: "drop" },
+    look: { color: "green", mascotBody: "grok-teardrop" },
     tryAsking: ["Add my monstera: living room, bright indirect light", "I watered the fern and the pothos today", "Why are my snake plant's leaves going yellow?"],
     apps: [],
     notes: {

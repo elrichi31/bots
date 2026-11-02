@@ -18,8 +18,11 @@ application was not modified.
 animation clock, reduced motion, gaze, colors and action cues.
 
 The 26 selectable ids use a `grok-` prefix to preserve existing avatars. Both
-profile editors offer the collection, and the shared bot-body schema accepts
-its ids for profile persistence. Explicit Grok bodies keep their appearance
+profile editors and onboarding offer the Grok collection as the standard catalog,
+and the shared bot-body schema accepts its ids for profile persistence.
+Retired legacy ids remain accepted for backups and stored profiles; the avatar
+renderer resolves them to equivalent Grok shapes without rewriting saved data.
+New bots and profile reset use `grok-blob`. Explicit Grok bodies keep their appearance
 when automatic Halloween costumes are enabled.
 
 Static exports live in `public/grok-avatars`: `svg/<color>/<shape>.svg` and
