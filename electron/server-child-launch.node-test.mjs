@@ -13,7 +13,7 @@ const DAY_MS = 24 * 60 * 60 * 1000;
 
 test("the packaged server forks the bootstrap with a compile cache under userData", () => {
   const resourcesPath = path.join("/Applications", "OpenMausBot.app", "Contents", "Resources");
-  const userData = path.join("/Users", "someone", "Library", "Application Support", "OpenMausBot");
+  const userData = path.join("/Users", "someone", "Library", "Application Support", "OpenZenlorBot");
   assert.deepEqual(serverChildLaunch({ resourcesPath, userData, env: {}, exists: () => true }), {
     entry: path.join(resourcesPath, "server", "desktop-entry.mjs"),
     compileCacheDir: path.join(userData, "server-compile-cache"),
@@ -21,7 +21,7 @@ test("the packaged server forks the bootstrap with a compile cache under userDat
 });
 
 test("a server tree without the bootstrap forks index.js with no cache, as before", () => {
-  const resourcesPath = path.join("/opt", "OpenMausBot", "resources");
+  const resourcesPath = path.join("/opt", "OpenZenlorBot", "resources");
   assert.deepEqual(serverChildLaunch({ resourcesPath, userData: "/home/someone/.config/OpenMausBot", env: {}, exists: () => false }), {
     entry: path.join(resourcesPath, "server", "index.js"),
     compileCacheDir: null,

@@ -30,7 +30,7 @@ function setup(t, { origin = "https://omb-u-aaaaaaaaaaaa.fly.dev" } = {}) {
   return { dir, home, project, cloud, holder, current, clock, service };
 }
 
-test("checks a folder before sharing: too broad, private, MausBot's own, or already shared are refused", async (t) => {
+test("checks a folder before sharing: too broad, private, ZenlorBot's own, or already shared are refused", async (t) => {
   const s = setup(t);
   mkdirSync(join(s.home, ".ssh"), { recursive: true });
   mkdirSync(join(s.home, ".openmausbot", "files"), { recursive: true });

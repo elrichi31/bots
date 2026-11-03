@@ -9,13 +9,13 @@ import { autostartEntry, createOpenAtLogin, installOpenAtLogin } from "./open-at
 
 /** Electron's login item API on macOS and Windows: one item per name, as Windows keeps one Run entry per name. */
 function fakeApp({ openAtLogin = false, isPackaged = true } = {}) {
-  const items = new Map(openAtLogin ? [["OpenMausBot", { args: [] }]] : []);
+  const items = new Map(openAtLogin ? [["OpenZenlorBot", { args: [] }]] : []);
   return {
     isPackaged, items, wasOpenedAtLogin: false,
     getLoginItemSettings() {
       return { openAtLogin: items.size > 0, wasOpenedAtLogin: this.wasOpenedAtLogin, launchItems: [...items].map(([name, item]) => ({ name, args: item.args, enabled: true })) };
     },
-    setLoginItemSettings({ openAtLogin: on, args = [], name = "OpenMausBot" }) { if (on) items.set(name, { args }); else items.delete(name); },
+    setLoginItemSettings({ openAtLogin: on, args = [], name = "OpenZenlorBot" }) { if (on) items.set(name, { args }); else items.delete(name); },
   };
 }
 
