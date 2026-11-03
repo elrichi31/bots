@@ -13,6 +13,8 @@ const MOTION_STATE: Partial<Record<MausMotion, MausState>> = {
   celebrate: "celebrate", surprise: "surprised", failure: "sad",
 };
 
+const BODY_ZOOM = 1.4;
+
 export const GrokAvatar = memo(forwardRef<MausAvatarHandle, MausAvatarProps & { bodyId: GrokBodyId }>(function GrokAvatar({
   bodyId, color, faceColor, size = 44, state = "idle", animated = true,
   trackPointer = true, gaze, motion = "none", motionKey = 0, label,
@@ -22,7 +24,7 @@ export const GrokAvatar = memo(forwardRef<MausAvatarHandle, MausAvatarProps & { 
   const reduced = usePrefersReducedMotion();
   const live = animated && !reduced;
   const engine = useMemo(() => {
-    const actor = createActor({ body: body(grokShape(bodyId)) });
+    const actor = createActor({ body: body(grokShape(bodyId)), zoomMul: BODY_ZOOM });
     const driver = createDriver(actor, state, { seed: 1, firstPhase: 0, isResting: !live });
     if (!live) for (let i = 0; i < 60; i++) actor.advance(0.1);
     return { actor, driver };
@@ -79,7 +81,7 @@ export const GrokAvatar = memo(forwardRef<MausAvatarHandle, MausAvatarProps & { 
 
   return <span
     ref={host}
-    className="inline-flex shrink-0"
+    className="inline-flex shrink-0 [&>svg]:overflow-visible"
     style={{ width: size, height: size }}
     role={label ? "img" : undefined}
     aria-label={label}

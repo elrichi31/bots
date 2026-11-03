@@ -10,7 +10,7 @@ export interface Driver {
   setState(state: string): void;
   advance(seconds: number): void;
 }
-export function createActor(options: { body: string }): Actor;
+export function createActor(options: { body: string; zoomMul?: number }): Actor;
 export function createDriver(actor: Actor, state: string, options?: { seed?: number; firstPhase?: number; isResting?: boolean }): Driver;
 export function body(shape: string): string;
 export function appearance(ink: string, spot?: string): unknown;
