@@ -4,6 +4,7 @@ import { ImagePlus, Loader2, Sparkles, Trash2 } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { t } from "@/lib/i18n";
 import { colorSwatch, MAUS_COLOR_LABEL, MAUS_COLOR_NAMES } from "@/lib/mascot";
+import { bodyName } from "@/lib/mascot-names";
 import type { Bot } from "@/state/store";
 import { BOT_PROFILE_LIMITS } from "../../shared/bot-profile";
 import { GROK_BODY_IDS, grokBodyName, grokBodyId } from "../../shared/grok-bodies";
@@ -102,7 +103,7 @@ export function MausBotCustomize({ preview, name, nameRef, image, onName, onPatc
         {image.error && <p role="alert" data-mausbot-welcome-error="" className="mt-1 px-2 text-[13px] text-danger">{image.error}</p>}
         {generating && (
           <div className="mt-2">
-            <AvatarImageGenerator botLabel={name || "ZenlorBot"} disabled={image.uploading} generating={image.generating} onGenerate={image.generate} onSavingChange={image.setSavingConnection} />
+            <AvatarImageGenerator botLabel={name || "ZenlorBot"} disabled={image.uploading} generating={image.generating} onGenerate={image.generate} />
           </div>
         )}
       </div>

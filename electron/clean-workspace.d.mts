@@ -2,6 +2,7 @@ export function cleanWorkspaceDir(dataDir: string): string;
 export function cleanWorkspaceConfig(language?: string | null, now?: Date): { language?: string; onboarding: { completedAt: string; version: number; hintsSeen: string[] } };
 export interface CleanWorkspace {
   active(): boolean;
+  ownCopy(): boolean;
   marker(): { frozen: boolean; cloud?: string; place?: string };
   enter(): Promise<boolean>;
   leave(): Promise<boolean>;
@@ -13,6 +14,7 @@ export function createCleanWorkspace(deps: {
   running(): string | null;
   swap(dir: string): Promise<{ ok: boolean }>;
   allowed?(): boolean;
+  t?(key: string, params?: Record<string, string | number>): string;
   changed?(): void;
   log?(line: string): void;
 }): CleanWorkspace;
