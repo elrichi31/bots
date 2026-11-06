@@ -16,7 +16,7 @@ describe("welcome avatar catalog", () => {
       preview, name: preview.name, nameRef: createRef<HTMLInputElement>(), onName: vi.fn(), onPatch: vi.fn(),
       image: {
         fileRef: createRef<HTMLInputElement>(), crop: "mascot", uploading: false, generating: false,
-        setSavingConnection: vi.fn(), busy: false, error: null,
+        busy: false, error: null,
         upload: vi.fn(async () => {}), removeImage: vi.fn(async () => {}), generate: vi.fn(async () => {}),
       },
     }));

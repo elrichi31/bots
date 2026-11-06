@@ -8,7 +8,7 @@ import type { LocaleKey } from "@/locales";
 import { colorSwatch, MAUS_COLOR_LABEL, MAUS_COLOR_NAMES, PICKABLE_STATES, type MausState } from "@/lib/mascot";
 import type { Bot } from "@/state/store";
 import { GROK_BODY_IDS, grokBodyName, grokBodyId } from "../../../shared/grok-bodies";
-import { HALLOWEEN_BODIES, HALLOWEEN_BODY_IDS } from "../../../shared/halloween-bodies";
+import { HALLOWEEN_BODY_IDS } from "../../../shared/halloween-bodies";
 import { isHalloweenBody, type BotBodyId } from "../../../shared/bot-body";
 import { useHalloweenDressed, wornBody } from "@/lib/halloween-dress";
 import { MausAvatar } from "../Avatar";

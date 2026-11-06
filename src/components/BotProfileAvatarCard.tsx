@@ -12,7 +12,7 @@ import {
 } from "@/lib/mascot";
 import { BOT_AVATAR_CROPS } from "../../shared/bot-avatar";
 import { GROK_BODY_IDS, grokBodyName, grokBodyId } from "../../shared/grok-bodies";
-import { HALLOWEEN_BODIES, HALLOWEEN_BODY_IDS } from "../../shared/halloween-bodies";
+import { HALLOWEEN_BODY_IDS } from "../../shared/halloween-bodies";
 import { isHalloweenBody, type BotBodyId } from "../../shared/bot-body";
 import { BotAvatar, MausAvatar } from "./Avatar";
 import { AvatarImageGenerator } from "./AvatarImageGenerator";
