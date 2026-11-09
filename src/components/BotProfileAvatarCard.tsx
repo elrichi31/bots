@@ -12,13 +12,12 @@ import {
 } from "@/lib/mascot";
 import { BOT_AVATAR_CROPS } from "../../shared/bot-avatar";
 import { GROK_BODY_IDS, grokBodyName, grokBodyId } from "../../shared/grok-bodies";
-import { HALLOWEEN_BODY_IDS } from "../../shared/halloween-bodies";
-import { isHalloweenBody, type BotBodyId } from "../../shared/bot-body";
+import { FESTIVAL_IDS, FESTIVALS, isCarvedBody, type BotBodyId } from "../../shared/bot-body";
 import { BotAvatar, MausAvatar } from "./Avatar";
 import { AvatarImageGenerator } from "./AvatarImageGenerator";
 import { AvatarFraming, OrganizationAvatarIcons, RESET_MASCOT_PATCH, useAvatarImage, type AvatarPatch } from "./avatar-editing";
 import { t } from "@/lib/i18n";
-import { bodyName, colorName, expressionName } from "@/lib/mascot-names";
+import { bodyName, colorName, expressionName, festivalName } from "@/lib/mascot-names";
 import { MascotFaceColorPicker } from "./MascotFaceColorPicker";
 
 export function BotProfileAvatarCard({
@@ -173,14 +172,18 @@ export function BotProfileAvatarCard({
                 <BodyButton key={id} id={id} name={`Grok ${grokBodyName(id)}`} bot={bot} busy={busy} onPatch={onPatch} />
               ))}
             </div>
-            <div className="mb-2 mt-4 text-[12px] font-medium uppercase tracking-[0.08em] text-ink-secondary">
-              {t("botPanel.avatar.halloween")}
-            </div>
-            <div className="grid grid-cols-5 gap-1.5" data-halloween-bodies>
-              {HALLOWEEN_BODY_IDS.map((id) => (
-                <BodyButton key={id} id={id} name={bodyName(id)} bot={bot} busy={busy} onPatch={onPatch} />
-              ))}
-            </div>
+            {FESTIVAL_IDS.map((festival) => (
+              <div key={festival}>
+                <div className="mb-2 mt-4 text-[12px] font-medium uppercase tracking-[0.08em] text-ink-secondary">
+                  {festivalName(festival)}
+                </div>
+                <div className="grid grid-cols-5 gap-1.5" data-festival-bodies={festival}>
+                  {FESTIVALS[festival].bodies.map((id) => (
+                    <BodyButton key={id} id={id} name={bodyName(id)} bot={bot} busy={busy} onPatch={onPatch} />
+                  ))}
+                </div>
+              </div>
+            ))}
           </>
         )}
 
@@ -204,7 +207,7 @@ function BodyButton({ id, name, bot, busy, onPatch }: {
   busy: boolean;
   onPatch: (patch: AvatarPatch) => void;
 }) {
-  const selected = (isHalloweenBody(bot.mascotBody) ? bot.mascotBody : grokBodyId(bot.mascotBody)) === id;
+  const selected = (isCarvedBody(bot.mascotBody) ? bot.mascotBody : grokBodyId(bot.mascotBody)) === id;
   return (
     <button
       type="button"

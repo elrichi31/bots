@@ -113,10 +113,10 @@ describe("mascotBody", () => {
     }
   });
 
-  it("accepts a Halloween body", () => {
-    expect(parseBotProfilePatch({ mascotBody: "pumpkin" } as never, true)).toEqual({
+  it.each(["pumpkin", "laddu"])("accepts the festival body %s", (mascotBody) => {
+    expect(parseBotProfilePatch({ mascotBody } as never, true)).toEqual({
       ok: true,
-      patch: { mascotBody: "pumpkin" },
+      patch: { mascotBody },
     });
   });
 
