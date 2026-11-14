@@ -1,4 +1,5 @@
 import { forwardRef, memo, useEffect, useId, useImperativeHandle, useMemo, useRef, type PointerEvent } from "react";
+import { avatarMarks } from "@/lib/avatar-marks";
 import { appearance, body, createActor, createDriver, expressions, paintSvg, renderSvg } from "../../third_party/grok-avatars/engine.mjs";
 import { grokShape, type GrokBodyId } from "../../shared/grok-bodies";
 import { mascotFaceInk } from "../../shared/bot-avatar";
@@ -17,7 +18,7 @@ const BODY_ZOOM = 1.4;
 
 export const GrokAvatar = memo(forwardRef<MausAvatarHandle, MausAvatarProps & { bodyId: GrokBodyId }>(function GrokAvatar({
   bodyId, color, faceColor, size = 44, state = "idle", animated = true,
-  trackPointer = true, gaze, motion = "none", motionKey = 0, label,
+  trackPointer = true, gaze, motion = "none", motionKey = 0, label, kind,
 }, ref) {
   const id = `grok-${useId().replace(/[^a-zA-Z0-9_-]/g, "")}`;
   const host = useRef<HTMLSpanElement>(null);
@@ -80,6 +81,7 @@ export const GrokAvatar = memo(forwardRef<MausAvatarHandle, MausAvatarProps & { 
   };
 
   return <span
+    {...avatarMarks(kind, "mascot")}
     ref={host}
     className="inline-flex shrink-0 [&>svg]:overflow-visible"
     style={{ width: size, height: size }}

@@ -219,10 +219,10 @@ describe("ZenlorBot, every person's helper", () => {
     const store = new Store(selection);
     const maus = boot(store)!;
     const other = store.createBot({ name: "Writer" });
-    expect(() => store.deleteBot(maus.id)).toThrow(/MausBot can't be deleted or archived/);
+    expect(() => store.deleteBot(maus.id)).toThrow(/ZenlorBot can't be deleted or archived/);
     expect(store.bot(maus.id)).toBeTruthy();
     expect(defaultBotPatchRefusal(maus, { hidden: true })).toMatch(/Show ZenlorBot in the sidebar/);
-    expect(defaultBotPatchRefusal(other, { sidebarHidden: true })).toMatch(/Only MausBot/);
+    expect(defaultBotPatchRefusal(other, { sidebarHidden: true })).toMatch(/Only ZenlorBot/);
     expect(defaultBotPatchRefusal(maus, { sidebarHidden: "yes" })).toBe("sidebarHidden must be true or false");
     expect(defaultBotPatchRefusal(maus, { sidebarHidden: true })).toBeNull();
     store.patchBot(maus.id, { sidebarHidden: true });
@@ -231,6 +231,19 @@ describe("ZenlorBot, every person's helper", () => {
     expect(placeMausBots(restarted).map((bot) => [bot.id, bot.sidebarHidden])).toEqual([[maus.id, true]]);
     restarted.patchBot(maus.id, { sidebarHidden: false });
     expect(new Store(selection).bot(maus.id)?.sidebarHidden).toBe(false);
+  });
+
+  it("demotes to a regular bot on defaultBot: null, then it can be deleted", () => {
+    const store = new Store(selection);
+    const maus = boot(store)!;
+    const other = store.createBot({ name: "Writer" });
+    expect(defaultBotPatchRefusal(maus, { defaultBot: {} })).toMatch(/only be cleared/);
+    expect(defaultBotPatchRefusal(maus, { defaultBot: null })).toBeNull();
+    expect(defaultBotPatchRefusal(other, { defaultBot: null })).toBeNull();
+    store.patchBot(maus.id, { defaultBot: undefined });
+    expect(store.bot(maus.id)?.defaultBot).toBeUndefined();
+    expect(() => store.deleteBot(maus.id)).not.toThrow();
+    expect(store.bot(maus.id)).toBeNull();
   });
 
   it("is never made twice for one place, even once its mark is gone", () => {
@@ -337,13 +350,13 @@ describe("ZenlorBot, every person's helper", () => {
       expect(cloud.bot(theirs.id)).toMatchObject({ name: "ZenlorBot", chiefOfStaff: true });
       expect(cloud.bot(theirs.id)?.hidden).toBeFalsy();
       const moved = cloud.bot(arriving.id)!;
-      expect(moved).toMatchObject({ name: "MausBot (from Amit's MacBook)" });
+      expect(moved).toMatchObject({ name: "ZenlorBot (from Amit's MacBook)" });
       expect([moved.defaultBot, moved.sidebarHidden, moved.hidden]).toEqual([undefined, undefined, undefined]);
       expect(defaultBotPatchRefusal(moved, { hidden: true })).toBeNull();
       expect(defaultBotPatchRefusal(cloud.bot(theirs.id), { hidden: true })).toContain("can't be deleted or archived");
       expect(boot(cloud)?.id).toBe(theirs.id);
       // A Mac MausBot that was the Chief there doesn't take the crown from the one kept here.
-      const chief = cloud.createBot({ name: "MausBot" }, { id: "desk-maus-000006", seedMessages: false });
+      const chief = cloud.createBot({ name: "ZenlorBot" }, { id: "desk-maus-000006", seedMessages: false });
       expect(await arrive(cloud, chief.id, fields({ defaultBot: {}, chiefOfStaff: true }), "Amit's MacBook")).toBe(200);
       expect(cloud.bots.filter((bot) => bot.chiefOfStaff).map((bot) => bot.id)).toEqual([theirs.id]);
       // Nor on a later pass that sends only its Chief fields: the computer it comes from says it is the MausBot there.
@@ -353,7 +366,7 @@ describe("ZenlorBot, every person's helper", () => {
       // Nor from a Chief here that is not the MausBot.
       const lee = cloud.createBot({ name: "Lee" }, { id: "cloud-lee-000008", seedMessages: false });
       cloud.setChiefOfStaff(lee.id);
-      const third = cloud.createBot({ name: "MausBot" }, { id: "desk-maus-000009", seedMessages: false });
+      const third = cloud.createBot({ name: "ZenlorBot" }, { id: "desk-maus-000009", seedMessages: false });
       expect(await arrive(cloud, third.id, fields({ defaultBot: {}, chiefOfStaff: true, managedSections: ["General"] }), "Amit's MacBook")).toBe(200);
       expect(cloud.bots.filter((bot) => bot.chiefOfStaff).map((bot) => bot.id)).toEqual([lee.id]);
       // A Chief that is not a MausBot takes the crown.
@@ -370,9 +383,9 @@ describe("ZenlorBot, every person's helper", () => {
       expect(await arrive(cloud, jarvis.id, fields({ defaultBot: {} }), "Amit's MacBook")).toBe(200);
       expect(cloud.bot(jarvis.id)).toMatchObject({ name: "Jarvis" });
       expect(cloud.bot(jarvis.id)?.defaultBot).toBeUndefined();
-      const unnamed = cloud.createBot({ name: "MausBot" }, { id: "desk-maus-000005", seedMessages: false });
+      const unnamed = cloud.createBot({ name: "ZenlorBot" }, { id: "desk-maus-000005", seedMessages: false });
       expect(await arrive(cloud, unnamed.id, fields({ defaultBot: {} }))).toBe(200);
-      expect(cloud.bot(unnamed.id)).toMatchObject({ name: "MausBot (from another computer)" });
+      expect(cloud.bot(unnamed.id)).toMatchObject({ name: "ZenlorBot (from another computer)" });
       expect(placeMausBots(cloud).map((bot) => bot.id)).toEqual([theirs.id]);
     });
 
